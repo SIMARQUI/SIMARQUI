@@ -1,0 +1,3 @@
+Insert into inmueble(nom_arch, nom_parro, descripcion, modo_adq, direccion, metraje, tipo_inm) values('nom arch #1', 'nom parr #1', 'descripcion #1', 'modo adquisicion #1', 'direccion #1', 'metraje #1', 'tipo inmueble #1');
+
+Insert Into documento(cod_doc, cod_inmf, tipo, dia, mes, anyo, datos_registro, abogado_redactor) values('000',1,'compra venta',1,2,1990,'datos registro #1','nombre abogado #1'); 
