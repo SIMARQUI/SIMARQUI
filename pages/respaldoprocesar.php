@@ -1,5 +1,6 @@
 <?php
-	$conexion=mysqli_connect("localhost","root","","basesc") or die("Problemas con la conexión");
+    require_once '../librerias/conexion.php';
+    $conexion = conectar();
 	
 	$consulta_base = "select * from documento, inmueble where (cod_inm = cod_inmf)";
 	//comprueba si ya se ha enviado el formulario

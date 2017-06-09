@@ -3,7 +3,8 @@
 
 <body>
 <?php
-	$conexion=mysqli_connect("localhost","root","","basesc") or die("Problemas con la conexión");
+	require_once '../librerias/conexion.php';
+        $conexion = conectar();
 	$consulta_base = "select * from documento";
 	$registros = mysqli_query($conexion, $consulta_base);
 	

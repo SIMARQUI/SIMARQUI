@@ -94,7 +94,7 @@
                             <a href="fundaciones.php"><i class="fa fa-users fa-fw"></i> Fundaciones y Asociaciones Civiles</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Administración<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> AdministraciÃ³n<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <?php if($_SESSION['rol']=='Administrador'){//tiene permiso para agregar Inmueble
 								?>
@@ -103,7 +103,7 @@
                                 </li>
 								<?php } ?>
 								<li>
-                                    <a href="cambContra.php">Cambiar Contraseña</a>
+                                    <a href="cambContra.php">Cambiar ContraseÃ±a</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -118,7 +118,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <div style="margin-top:10px;"><img src="../pass.jpg" /><h1 class="page-header" style="color:#5d5d89">Cambiar Contraseña</h1></div>
+                    <div style="margin-top:10px;"><img src="../pass.jpg" /><h1 class="page-header" style="color:#5d5d89">Cambiar ContraseÃ±a</h1></div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -134,15 +134,15 @@
 								<div class="col-lg-12" id="mostrarUsuarios">
 									<form role="form" id="form1" name="form1">
 										<div class="form-group">
-											<label>Contraseña Actual</label>
+											<label>ContraseÃ±a Actual</label>
 											<input class="form-control" id="" name="desdePicker" type="text" placeholder="Desde">
 										</div>
 										<div class="form-group">
-											<label>Nueva Contraseña</label>
+											<label>Nueva ContraseÃ±a</label>
 											<input class="form-control" id="" name="desdePicker" type="text" placeholder="Desde">
 										</div>
 										<div class="form-group">
-											<label>Repetir Nueva Contraseña</label>
+											<label>Repetir Nueva ContraseÃ±a</label>
 											<input class="form-control" id="" name="hastaPicker" type="text" placeholder="Hasta">
 										</div>
 									<button id="cambContra" type="button" class="btn btn-primary">Aceptar</button>
