@@ -8,4 +8,3 @@ $registros = mysqli_query($conexion, "select * from archiprestazgo where id_arch
 $fila = mysqli_fetch_array($registros);
 
 echo json_encode($fila);
-?>

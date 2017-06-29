@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 	if(!isset($_SESSION['usuario']))
 		header('location: login.php');
 
@@ -8,12 +8,12 @@
 	include('../librerias/utiles.php');
 
 	$conexion = conectar();
-	
+
 	$id_arch = $_REQUEST['id_arch'];
-	$consulta = "select * from parroquia where (id_archif = $id_arch)";
-	
+	$consulta = "select * from parroquia where (id_archif = $id_arch) order by cod_parro";
+
 	$registros = mysqli_query($conexion, $consulta) or die('errorr');
-	
+
 	if(mysqli_num_rows($registros) > 0)
 	{
 		echo "<div class='row'>
@@ -22,10 +22,10 @@
 		{
 			echo	"<div class='panel panel-primary'>
 						<div class='panel-heading'>
-						<span style='font-weight:bold'>Codigo de la parroquia:</span> ".$fila['id_parro'];
-			if(1==1){
-				echo	"<a class='del-parro-from-arch' data-parro='".$fila['id_parro']."' href='#' style='margin-left:15px;'><img src='../papelera.jpg' width='24px' height='24px' alt='Eliminar parroquia de este archiprestazgo'></a>";
-			}		
+						<span style='font-weight:bold'>Codigo de la parroquia:</span> ".$fila['cod_parro'];
+			if(1==1) {
+				echo	"<a class='del-parro-from-arch' data-parro='".$fila['id_parro']."' data-arch='".$fila['id_archif']."' href='#' style='margin-left:15px;'><img src='../papelera.jpg' width='24px' height='24px' alt='Eliminar parroquia de este archiprestazgo'></a>";
+			}
 			echo		"</div>
 						<!-- /.panel-heading -->
 						<div class='panel-body'>
@@ -42,7 +42,7 @@
 		}
 		echo	"</div>
 				 </div>";
-		
+
 		//echo	"<script src='../js/del-inm-from-doc.js'></script>";
 		/*echo 		"<script type='text/javascript'>
 						$(\"button[name='btnMas']\").click(function (){
@@ -57,4 +57,3 @@
 					Este Archiprestazgo no posee parroquias
 				 </div>";
 	}
-?>

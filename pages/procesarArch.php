@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 	if(!isset($_SESSION['usuario']))
 		header('location: login.php');
 
@@ -9,15 +9,15 @@
 
 	require_once('../FirePHPCore/FirePHP.class.php');
 	ob_start();
-	
+
 	$firephp = FirePHP::getInstance(TRUE);
 	$firephp->log('fire ta listo', 'Info');
-	
+
 	$conexion = conectar();
 	$pagActual = 1;
 	$_SESSION['ultima_pagina_archiprestazgo'] = $pagActual;
 	$consulta_ejecutar = $_SESSION['ultima_consulta_archiprestazgo'];
-	
+
 	if(isset($_REQUEST['numPage']) or isset($_REQUEST['filasPPArch']) or isset($_REQUEST['edit_arch']))
 	{
 		if(isset($_REQUEST['numPage']))
@@ -31,40 +31,40 @@
 			{
 				$consultaFilasPP = mysqli_query($conexion, "select filasPPArch from usuario where login = '".$_SESSION['usuario']."'");
 				$getFilasPP = mysqli_fetch_array($consultaFilasPP);
-				
+
 				$filasPPAnt = $getFilasPP['filasPPArch'];
-				
+
 				$filasPPArch = $_REQUEST['filasPPArch'];
-				
+
 				mysqli_query($conexion, "update usuario set filasPPArch = $filasPPArch where login = '".$_SESSION['usuario']."'");
-				
+
 				$primera_fila_de_ultima_pagina = ( ($_SESSION['ultima_pagina_archiprestazgo'] - 1) * $filasPPAnt ) + 1;
-				
+
 				$pagActual = ceil($primera_fila_de_ultima_pagina / $filasPPArch);
-				
+
 				$_SESSION['ultima_pagina_archiprestazgo'] = $pagActual;
 			}
 			else
 			{
 				$pagActual = $_SESSION['ultima_pagina_archiprestazgo'];
 			}
-			
+
 		}
-		
+
 		$consulta_ejecutar = $_SESSION['ultima_consulta_archiprestazgo'];
-		
-		
+
+
 	}
-	
+
 	/*echo	"<div class='row'>
 				<div class='col-lg-12'>
 					<p>consulta ejecutada: $consulta_ejecutar</p>
 				</div>
 			</div>";*/
-	
-	
-	
-	
+
+
+
+
 	$registros = mysqli_query($conexion, $consulta_ejecutar) or die('Problemas con la consulta');
 	$num_total_registros = mysqli_num_rows($registros);
 
@@ -73,22 +73,22 @@
 					<p>Elementos encontrados: $num_total_registros</p>
 				</div>
 			</div>";
-	
+
 	if($num_total_registros > 0)
 	{
 		if(!isset($filasPPArch))
 		{
 			$consultaFilasPP = mysqli_query($conexion, "select filasPPArch from usuario where login = '".$_SESSION['usuario']."'");
 			$getFilasPP = mysqli_fetch_array($consultaFilasPP);
-			
+
 			$filasPPArch = $getFilasPP['filasPPArch'];
 		}
-		
+
 		//contando el desplazamiento
 		$offset = ($pagActual - 1) * $filasPPArch;
 		$total_paginas = ceil($num_total_registros / $filasPPArch);
-		
-		$registros = mysqli_query($conexion, "$consulta_ejecutar LIMIT $offset, $filasPPArch") or die(mysqli_error($conexion));
+
+		$registros = mysqli_query($conexion, "$consulta_ejecutar ORDER BY cod_arch LIMIT $offset, $filasPPArch") or die(mysqli_error($conexion));
 
         echo 		"<div class='row'>
                         <div class='col-lg-12'>";
@@ -98,7 +98,7 @@
 			$parros = mysqli_query($conexion, "select id_parro from parroquia where id_archif = ".$fila['id_arch']) or die('Problemas con la consulta');
         	$nparros = mysqli_num_rows($parros);
 			echo	"<div class='panel panel-primary'>
-						<div class='panel-heading'><span style='font-weight:bold'>Codigo del Archiprestazgo:</span> ".$fila['id_arch'];
+						<div class='panel-heading'><span style='font-weight:bold'>Codigo del Archiprestazgo:</span> ".$fila['cod_arch'];
 			/*if(1==1)//Tiene permiso para borrar un documento
 			{
 				echo
@@ -135,21 +135,21 @@
 
         echo 		"</div>
         			 </div>";
-		
-        
-		
+
+
+
 		if($total_paginas > 1)
 		{
 			echo 		"<div class='row''>
 							<div class='col-lg-12'>";
-						
+
 			if ($pagActual != 1)
 				echo "<a href='#' class='paginarArch' style='margin-right:10px' data-numpage='".($pagActual-1)."'>Anterior</a>";
-			
+
 			if( ($pagActual >= 1) And ($pagActual <= 6) )
 			{
 				$lim_inf = 1;
-				
+
 				if($total_paginas < 10)
 					$lim_sup = $total_paginas;
 				else
@@ -175,7 +175,7 @@
 					$lim_inf = $lim_sup - 9;
 				}
 			}
-			
+
 			for($i = $lim_inf; $i <= $lim_sup; $i++)
 			{
 				if($i == $pagActual)
@@ -183,13 +183,13 @@
 				else
 					echo "<a class='paginarArch' href='#' style='margin-right:10px' data-numpage='$i'>$i</a>";
 			}
-			
+
 			if($pagActual != $total_paginas)
 				echo "<a class='paginarArch' href='#' style='margin-right:10px' data-numpage='".($pagActual+1)."'>Siguiente</a>";
 			echo "</div>";
 			echo "</div>";
 		}
-		
+
 	}
 	else
 	{

@@ -7,6 +7,6 @@ if(!isset($_SESSION['usuario']))
 include('../librerias/conexion.php');
 $conexion = conectar();
 
-$id_arch = $_REQUEST['id_arch'];
+$id_parro = $_REQUEST['id_parro'];
 
-mysqli_query($conexion, "delete from archiprestazgo where id_arch = $id_arch");
+mysqli_query($conexion, "delete from parroquia where id_parro = $id_parro");

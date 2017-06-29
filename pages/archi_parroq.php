@@ -1,13 +1,13 @@
 <?php
 	session_start();
-	
+
 	if(!isset($_SESSION['usuario']))
 		header('location: login.php');
 
 	include('../librerias/mensajes.php');
 	include('../librerias/utiles.php');
 	include('../librerias/conexion.php');
-	
+
 	$_SESSION['ultima_consulta_archiprestazgo'] = "select * from archiprestazgo";
 	$_SESSION['ultima_pagina_archiprestazgo'] = 1;
 ?>
@@ -38,7 +38,7 @@
 	<!--  Jquery-ui css  -->
     <link rel="stylesheet" href="../jquery-ui/jquery-ui.css">
 
-	
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -159,7 +159,7 @@
 
     </div>
     <!-- /#wrapper -->
-	
+
 	<div id="dialog-new-archiprestazgo" title="Nuevo Archiprestazgo">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_arch_new">
@@ -170,13 +170,13 @@
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="dialog-edit-archiprestazgo" title="Editar Archiprestazgo">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_arch_edit">
 			<div class="form-group">
 				<label>Codigo</label>
-				<span id='id_arch_edit'></span>
+				<span id='cod_arch_edit'></span>
 				<input type="hidden" name="id_arch" id="id_arch_hidden">
 			</div>
 			<div class="form-group">
@@ -186,7 +186,7 @@
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="dialog-form-parroquia" title="Nueva Parroquia">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_parro">
@@ -197,7 +197,7 @@
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="show-parros-from-arch-modal" title="Parroquias de archiprestazgo">
 		<div class="row" style="margin-top:20px">
 			<div class='col-lg-12'>
@@ -225,25 +225,25 @@
 
 	<!-- Jquery-UI -->
 	<script src="../jquery-ui/jquery-ui.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/modal-arch-new.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/paginadorArch.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/cambiarFilasPPArch.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/edit_arch.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/show-parros-from-arch-modal.js"></script>
-	
+
 	<!-- Modal nuevo documento -->
 	<script src='../js/modal-parro-new.js'></script>
-	
+
 </body>
 
 </html>
