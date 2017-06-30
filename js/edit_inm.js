@@ -1,6 +1,6 @@
   $(function() {
     var dialogEditInm, form,
- 
+
       // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
       //emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
       archiprestazgo_edit = $( "#archiprestazgo_edit" ),
@@ -11,10 +11,10 @@
 	  tipo_inm_edit	= $("#tipo_inm_edit"),
 	  linderos_edit	= $("#linderos_edit"),
 	  descripcion_edit	= $("#descripcion_edit"),
-	  
+
       allFields = $( [] ).add( archiprestazgo_edit ).add( parroquia_edit ).add( direccion_edit ).add( modo_adq_edit ).add( metraje_edit ).add( tipo_inm_edit ).add( linderos_edit ).add( descripcion_edit ),
       tips = $( ".validateTips" );
- 
+
     function updateTips( t ) {
       tips
         .text( t )
@@ -23,7 +23,7 @@
         tips.removeClass( "ui-state-highlight", 1500 );
       }, 500 );
     }
- 
+
     function checkLength( o, n, min, max ) {
       if ( o.val().length > max || o.val().length < min ) {
         o.addClass( "ui-state-error" );
@@ -34,7 +34,7 @@
         return true;
       }
     }
- 
+
     function checkRegexp( o, regexp, n ) {
       if ( !( regexp.test( o.val() ) ) ) {
         o.addClass( "ui-state-error" );
@@ -44,7 +44,7 @@
         return true;
       }
     }
-	
+
 	function checkPropietario() {
 		if(archiprestazgo_edit.val() == 'ningun'){
 			archiprestazgo_edit.addClass("ui-state-error");
@@ -61,7 +61,7 @@
 		}
 		return true;
 	}
- 
+
     function updateInm() {
       var valid = true;
       allFields.removeClass( "ui-state-error" );
@@ -74,7 +74,7 @@
 		valid = valid && checkLength( descripcion_edit, "Descripcion", 1, 200 );
 
       if ( valid ) {
-        //hacemos la petición ajax 
+        //hacemos la petición ajax
 		var enlace = "actualizarInm.php?"+$("#form_inm_edit").serialize();
         $.ajax({
             url: enlace,
@@ -90,12 +90,12 @@
             }
         });
 		//FIN ADD
-		
+
         dialogEditInm.dialog( "close" );
       }
       return valid;
     }
- 
+
     dialogEditInm = $( "#dialog-edit-inmueble" ).dialog({
       autoOpen: false,
       height: 500,
@@ -112,21 +112,21 @@
         allFields.removeClass( "ui-state-error" );
       }
     });
- 
+
     form = dialogEditInm.find( "form" ).on( "submit", function( event ) {
       event.preventDefault();
       updateInm();
     });
-	
+
     $( "#mostrarInmuebles" ).on( "click", ".edit_inm", function(event) {
 	  event.preventDefault();
 	  tips.text('');
 	  $.getJSON("enviarDatosDeInm.php?id_inm="+$(this).data('inm'), function(data){
-		  $("#id_inm_edit").text(data.id_inm);
+		  $("#id_cod_edit").text(data.cod_inm);
 		  $("#id_inm_hidden").val(data.id_inm);
 		  $("#archiprestazgo_edit").val(data.archiprestazgo);
 		  obtSelectParros(data.archiprestazgo, data.parroquia);
-		  
+
 		  $("#direccion_edit").val(data.direccion);
 		  $("#modo_adq_edit").val(data.modo_adq);
 		  $("#metraje_edit").val(data.metraje);
@@ -134,15 +134,15 @@
 		  $("#linderos_edit").val(data.linderos);
 		  $("#descripcion_edit").val(data.descripcion);
 	  });
-	  
+
       dialogEditInm.dialog( "open" );
     });
-	
+
 	function obtSelectParros(arch_val, parro){
 		var enlace;
 		var parroquia_edit = $("#parroquia_edit");
 		parroquia_edit.empty().html("<option value='ningun'>Seleccionar...</option>");
-		
+
 		if( (arch_val != 'ningun') && (arch_val != '-1') )
 		{
 			if(arch_val == '0')

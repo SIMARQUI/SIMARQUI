@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	
+
 	if(!isset($_SESSION['usuario']))
 		header('location: login.php');
-	
+
 	include('../librerias/utiles.php');
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
 	<!--  Jquery-ui css  -->
     <link rel="stylesheet" href="../jquery-ui/jquery-ui.css">
 
-	
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -121,7 +121,7 @@
 
     </div>
     <!-- /#wrapper -->
-	
+
 	<div id="dialog-form" title="Nuevo Inmueble">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form1">
@@ -130,8 +130,6 @@
 					<p><label>Administrador</label></p>
 					<select name="archiprestazgo" id="archiprestazgo" class="form-control">
 						<option value="ningun">Seleccionar</option>
-						<option value="-1">Arquidiocesis</option>
-						<option value="0">Fundac. y Asoc. Civiles</option>
 						<?php include 'selectArchiprestazgos.php'; ?>
 					</select>
 				</div>
@@ -145,7 +143,7 @@
 			<!-- / ubiacion -->
 			<div class="form-group">
 				<label>Direccion</label>
-				<input id="direccion" name="direccion" class="form-control">
+				<input id="direccion" name="direccion" placeholder="Direccion" class="form-control">
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
@@ -170,7 +168,7 @@
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="dialog-form-document" enctype="multipart/form-data" title="Nuevo documento">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_doc">
@@ -194,7 +192,7 @@
 					<option value="Otros">Otros</option>
 				</select>
 			</div>
-			
+
 			<div id="fecha" style="margin-bottom:30px;">
 				<div style="display: inline-block; width:32%;">
 					<p><label>Dia</label></p>
@@ -214,7 +212,7 @@
 						<option value="ningun">Todos</option>
 						<?php
 							$Arraymeses = obtArrayMeses();
-							
+
 							for($i = 0; $i < 12; $i++)
 							{
 								echo "<option value='".($i+1)."'>".$Arraymeses[$i]."</option>\n";
@@ -228,7 +226,7 @@
 						<option value="ningun">Todos</option>
 						<?php
 							$anyoActual = obtAnyoAct();
-							
+
 							for($i = 1900; $i <= $anyoActual; $i++)
 							{
 								echo "<option value='$i'>$i</option>\n";
@@ -238,12 +236,12 @@
 				</div>
 			</div>
 			<!-- / fecha -->
-			
+
 			<div class="form-group">
 				<label>Datos de Registro</label>
 				<input id="dat_reg" name="dat_reg" class="form-control" placeholder="Datos de Registro">
 			</div>
-			
+
 			<div class="form-group">
 				<label>Abogado Redactor</label>
 				<input id="abog_redc" name="abog_redc" class="form-control" placeholder="Abogado Redactor">
@@ -256,9 +254,9 @@
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="mostrarDocs" title="Documentos">
-		
+
 	</div>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -274,25 +272,25 @@
 
 	<!-- Jquery-UI -->
 	<script src="../jquery-ui/jquery-ui.js"></script>
-	
+
     <!-- Archiprestazgos y parroquias -->
     <script src="../js/archiParro.js"></script>
-	
+
 	<!-- Borrar Inmueble -->
     <script src="../js/del_inm.js"></script>
-	
+
 	<!-- Modal ver documentos -->
 	<script src="../js/modal-doc-list.js"></script>
-	
+
 	<!-- Modal nuevo documento -->
 	<script src='../js/modal-doc-new-to-inm.js'></script>
-	
+
 	<!-- Modal nuevo inmueble -->
 	<script src='../js/modal-inm-new.js'></script>
-	
+
 	<!--Paginadorr -->
 	<script src='../js/paginador.js'></script>
-	
+
 </body>
 
 </html>

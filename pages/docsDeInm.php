@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 	if(!isset($_SESSION['usuario']))
 		header('location: login.php');
 
@@ -8,18 +8,18 @@
 	include('../librerias/utiles.php');
 
 	$conexion = conectar();
-	
+
 	$id_inm = $_REQUEST['id_inm'];
-	$consulta = "select id_doc, tipo, dia, mes, anyo, datos_registro, abogado_redactor from documento, se_refiere where (id_doc = id_docf) And (id_inmfff = $id_inm)"; 
-	
+	$consulta = "select id_doc, cod_doc, tipo, dia, mes, anyo, datos_registro, abogado_redactor from documento, se_refiere where (id_doc = id_docf) And (id_inmfff = $id_inm)";
+
 	$registros = mysqli_query($conexion, $consulta) or die('errorr');
-	
+
 	while($fila = mysqli_fetch_array($registros))
 	{
 		$mes = obtMes($fila['mes']);
 		echo	"<div class='col-lg-12'>
                     <div class='panel panel-primary'>
-                        <div class='panel-heading'><span style='font-weight:bold'>Codigo del documento:</span> ".$fila['id_doc']."</div>
+                        <div class='panel-heading'><span style='font-weight:bold'>Codigo del documento:</span> ".$fila['cod_doc']."</div>
                         <!-- /.panel-heading -->
                         <div class='panel-body'>
                             <!-- Tab panes -->

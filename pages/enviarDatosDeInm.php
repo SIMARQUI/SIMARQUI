@@ -8,22 +8,18 @@ $registros = mysqli_query($conexion, "select * from inmueble where id_inm = $id_
 $fila = mysqli_fetch_array($registros);
 
 $registros = mysqli_query($conexion, "select * from inm_pert_arqui where id_inmffff = $id_inm");
-if(mysqli_num_rows($registros) > 0)
-{
+if(mysqli_num_rows($registros) > 0) {
 	$fila['archiprestazgo'] = -1;
 	$fila['parroquia'] = 'ningun';
 }
-else
-{
+else {
 	$registros = mysqli_query($conexion, "select * from inm_pert_fund where id_inmff = $id_inm");
-	if(mysqli_num_rows($registros) > 0)
-	{
+	if(mysqli_num_rows($registros) > 0) {
 		$row = mysqli_fetch_array($registros);
 		$fila['archiprestazgo'] = 0;
 		$fila['parroquia'] = $row['id_fundff'];
 	}
-	else
-	{
+	else {
 		$registros = mysqli_query($conexion, "select id_parro, id_archif from parroquia, inm_pert_parro where (id_inmf = $id_inm) And (id_parro = id_parrof)");
 		$row = mysqli_fetch_array($registros);
 		$fila['archiprestazgo'] = $row['id_archif'];
@@ -32,4 +28,3 @@ else
 }
 
 echo json_encode($fila);
-?>

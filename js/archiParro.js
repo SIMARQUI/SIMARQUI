@@ -3,11 +3,11 @@ $(function(){
 		var parroquia_busqueda = $("#parroquia_busqueda");
 		var parroquia_edit = $("#parroquia_edit");
 		$("#archiprestazgo").on("change", function(){
-			
+
 			var enlace;
 			var arch_val = $("#archiprestazgo").val();
 			parroquia.empty().html("<option value='ningun'>Seleccionar...</option>");
-			
+
 			if( (arch_val != 'ningun') && (arch_val != '-1') )
 			{
 				if(arch_val == '0')
@@ -31,15 +31,14 @@ $(function(){
 					});
 				}
 			}
-			
+
 		});
-		
-		$("#archiprestazgo_busqueda").on("change", function(){
-			
+
+		$("#archiprestazgo_busqueda").on("change", function() {
 			var enlace;
 			var arch_val = $("#archiprestazgo_busqueda").val();
 			parroquia_busqueda.empty().html("<option value='ningun'>Seleccionar...</option>");
-			
+
 			if( (arch_val != 'ningun') && (arch_val != '-1') )
 			{
 				if(arch_val == '0')
@@ -63,15 +62,15 @@ $(function(){
 					});
 				}
 			}
-			
+
 		});
-		
+
 		$("#archiprestazgo_edit").on("change", function(){
-			
+
 			var enlace;
 			var arch_val = $("#archiprestazgo_edit").val();
 			parroquia_edit.empty().html("<option value='ningun'>Seleccionar...</option>");
-			
+
 			if( (arch_val != 'ningun') && (arch_val != '-1') )
 			{
 				if(arch_val == '0')
@@ -95,6 +94,6 @@ $(function(){
 					});
 				}
 			}
-			
+
 		});
 });

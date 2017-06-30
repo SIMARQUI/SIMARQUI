@@ -1,17 +1,18 @@
   $(function() {
     var dialogNewDoc, form,
- 
+
       // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
       //emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
       id_doc = $("#id_doc");
+      cod_doc = $("#cod_doc");
 	  tipo = $( "#tipo" ),
 	  fechaPicker = $( "#fechaPicker" ),
 	  datos_registro	= $("#datos_registro"),
 	  abogado_redactor	= $("#abogado_redactor"),
-	  
+
       allFields = $( [] ).add(id_doc).add( tipo ).add( fechaPicker ).add( datos_registro ).add( abogado_redactor ),
       tips = $( ".validateTips" );
- 
+
     function updateTips( t ) {
 		tips
 			.text( t )
@@ -20,7 +21,7 @@
 			tips.removeClass( "ui-state-highlight", 1500 );
 		}, 500 );
     }
- 
+
     function checkLength( o, n, min, max ) {
 		if ( o.val().length > max || o.val().length < min ) {
 			o.addClass( "ui-state-error" );
@@ -31,7 +32,7 @@
 			return true;
 		}
 	}
- 
+
     function checkRegexp( o, regexp, n ) {
       if ( !( regexp.test( o.val() ) ) ) {
         o.addClass( "ui-state-error" );
@@ -41,13 +42,13 @@
         return true;
       }
     }
-	
+
 	function campoRepetido(url, elem){
 		var rep;
 		var json = {
 			"elem" : elem
 		};
-		
+
 		$.ajax({
 			dataType : "json",
 			url : url,
@@ -59,7 +60,7 @@
 		});
 		return rep;
 	}
-	
+
 	function checkId_doc(o, n, min, max){
 		if(!checkLength(o, n, min, max)){
 			return false;
@@ -72,7 +73,7 @@
 		}
 		return true;
 	}
-	
+
 	function checkTipo(o){
 		if(o.val() == "ningun"){
 			o.addClass( "ui-state-error" );
@@ -81,7 +82,7 @@
 		}
 		return true;
 	}
-	
+
 	function checkFecha(o) {
 		if(o.val().length == 0) {
 			o.addClass( "ui-state-error" );
@@ -90,25 +91,25 @@
 		}
 		return true;
 	}
- 
+
     function createDoc() {
       var valid = true;
       allFields.removeClass( "ui-state-error" );
- 
-	  valid = valid && checkId_doc(id_doc, "Codigo", 1, 10);
+
+	  valid = valid && checkLength(cod_doc, "Codigo", 1, 10);
 	  valid = valid && checkTipo(tipo);
 	  valid = valid && checkFecha( fechaPicker );
       valid = valid && checkLength( datos_registro, "Datos de Registro", 1, 100 );
       valid = valid && checkLength( abogado_redactor, "Abogado Redactor", 1, 100 );
 
       if ( valid ) {
-		
+
 		//ADD
 		//información del formulario
 		var formData = new FormData(document.getElementById("form_doc_new"));
-        //hacemos la petición ajax  
+        //hacemos la petición ajax
         $.ajax({
-            url: 'guardarDoc.php',  
+            url: 'guardarDoc.php',
             type: 'POST',
             // Form data
             //datos del formulario
@@ -120,7 +121,7 @@
             //mientras enviamos el archivo
             /*beforeSend: function(){
                 //message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-                //showMessage(message)        
+                //showMessage(message)
             },*/
             //una vez finalizado correctamente
             success: function(data){
@@ -135,12 +136,12 @@
             }
         });
 		//FIN ADD
-		
+
         dialogNewDoc.dialog( "close" );
       }
       return valid;
     }
- 
+
     dialogNewDoc = $( "#dialog-new-document" ).dialog({
       autoOpen: false,
       height: 500,
@@ -157,12 +158,12 @@
         allFields.removeClass( "ui-state-error" );
       }
     });
- 
+
     form = dialogNewDoc.find( "form" ).on( "submit", function( event ) {
       event.preventDefault();
       createDoc();
     });
-	
+
     $( "#create-doc" ).button().on( "click", function(event) {
 	  event.preventDefault();
 	  tips.text('');

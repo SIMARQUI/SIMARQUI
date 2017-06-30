@@ -55,7 +55,8 @@ INSERT INTO `archiprestazgo` (`id_arch`, `nom_arch`, `cod_arch`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `documento` (
-  `id_doc` varchar(10) NOT NULL,
+  `id_doc` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_doc` varchar(11) NOT NULL,
   `tipo` varchar(60) NOT NULL,
   `datos_registro` varchar(100) NOT NULL,
   `abogado_redactor` varchar(100) NOT NULL,
@@ -84,7 +85,8 @@ CREATE TABLE IF NOT EXISTS `fundacion` (
 --
 
 CREATE TABLE IF NOT EXISTS `inmueble` (
-  `id_inm` int(11) NOT NULL,
+  `id_inm` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_inm` varchar(11) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
   `modo_adq` varchar(50) NOT NULL,
   `direccion` varchar(200) NOT NULL,
@@ -233,7 +235,7 @@ INSERT INTO `parroquia` (`id_parro`, `nom_parro`, `cod_parro`, `id_archif`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `se_refiere` (
-  `id_docf` varchar(10) NOT NULL,
+  `id_docf` int(11) NOT NULL,
   `id_inmfff` int(11) NOT NULL,
   PRIMARY KEY (`id_docf`,`id_inmfff`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -256,23 +258,23 @@ CREATE TABLE IF NOT EXISTS `tipo_documento` (
 --
 
 INSERT INTO `tipo_documento` (`id`, `nombre`) VALUES
-(9, 'ADJUDICACION'),
-(13, 'ANTICRESIS'),
-(15, 'ARRENDAMIENTO'),
-(2, 'CESION O TRASPASO'),
-(1, 'COMPRA VENTA'),
-(3, 'DONACIONES'),
-(14, 'EXPROPIACION'),
-(11, 'HIPOTECA'),
-(8, 'LIQUIDACION DE HIPOTECA'),
-(10, 'LIQUIDACION Y PARTICION DE BIENES'),
-(6, 'NOTAS ACLARATORIAS'),
-(17, 'OTROS'),
-(4, 'PERMUTAS'),
-(12, 'PETICION PARA CONSTRUCCION'),
-(16, 'RETRACTO LEGAL'),
-(7, 'TESTAMENTO'),
-(5, 'TITULO SUPLETORIO');
+(9, 'Adjudicación'),
+(13, 'Anticresis'),
+(15, 'Arrendamiento'),
+(2, 'Cesion o Traspaso'),
+(1, 'Compra Venta'),
+(3, 'Donaciones'),
+(14, 'Expropiación'),
+(11, 'Hipoteca'),
+(8, 'Liquidación de Hipoteca'),
+(10, 'Liquidación y Partición de Bienes'),
+(6, 'Notas Aclaratorias'),
+(17, 'Otros'),
+(4, 'Permutas'),
+(12, 'Petición Para Construcción'),
+(16, 'Retracto Legal'),
+(7, 'Testamento'),
+(5, 'Titulo Supletorio');
 
 -- --------------------------------------------------------
 

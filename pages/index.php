@@ -12,8 +12,8 @@ $_SESSION['ultima_consulta'] = "select id_doc, tipo, datos_registro, abogado_red
 $_SESSION['ultima_pagina'] = 1;
 $_SESSION['ultima_consulta_inmueble'] = "select id_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos from inmueble order by fecha_add_inm DESC";
 $_SESSION['ultima_pagina_inmueble'] = 1;
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,11 +37,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+
 	<!-- Custom Fonts -->
     <link href="../bower_components/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
-	
-	
+
+
 	<!--  Jquery-ui css  -->
     <link rel="stylesheet" href="../jquery-ui/jquery-ui.css">
 
@@ -144,19 +144,16 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
                         <div class="panel-body">
 							<!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#documentos" data-toggle="tab">Documentos</a>
-                                </li>
-                                <li><a href="#inmuebles" data-toggle="tab">Inmuebles</a>
-                                </li>
+								<li class="active"><a href="#inmuebles" data-toggle="tab">Inmuebles</a></li>
+                                <li><a href="#documentos" data-toggle="tab">Documentos</a></li>
                             </ul>
-							
 							<!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="documentos">
-									<?php include('documentos.php'); ?>
-                                </div>
-                                <div class="tab-pane fade" id="inmuebles">
+                                <div class="tab-pane fade in active" id="inmuebles">
 									<?php include('inmuebles2.php'); ?>
+                                </div>
+								<div class="tab-pane fade" id="documentos">
+									<?php include('documentos.php'); ?>
                                 </div>
                             </div>
                         </div>
@@ -168,17 +165,16 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
             </div>
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
-	
-	<!--------------------------------- Modales Para documento ------------------------------------->
+
+	<!-- Modales Para documento -->
 	<div id="dialog-new-document" title="Nuevo documento">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_doc_new" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>Codigo</label>
-				<input id="id_doc" name="id_doc" class="form-control" placeholder="Codigo">
+				<input id="cod_doc" name="cod_doc" class="form-control" placeholder="Codigo">
 			</div>
 			<div class="form-group">
 				<label>Tipo</label>
@@ -189,19 +185,19 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 					?>
 				</select>
 			</div>
-			
+
 			<div class="form-group">
 				<label>Fecha</label>
 				<input type="text" id="fechaPicker" name="fechaPicker" readonly="readonly">
 				<input type="hidden" id="fecha" name="fecha">
 			</div>
 			<!-- / fecha -->
-			
+
 			<div class="form-group">
 				<label>Datos de Registro</label>
 				<input id="datos_registro" name="datos_registro" class="form-control" placeholder="Datos de Registro">
 			</div>
-			
+
 			<div class="form-group">
 				<label>Abogado Redactor</label>
 				<input id="abogado_redactor" name="abogado_redactor" class="form-control" placeholder="Abogado Redactor">
@@ -214,13 +210,13 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="dialog-edit-document" title="Editar Documento">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_doc_edit" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>Codigo</label>
-				<span id='id_doc_edit'></span>
+				<span id='cod_doc_edit'></span>
 				<input type="hidden" name="id_doc" id="id_doc_hidden">
 			</div>
 			<div class="form-group">
@@ -239,12 +235,12 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<input type="hidden" id="fecha_edit_hidden" name="fecha">
 			</div>
 			<!-- / fecha -->
-			
+
 			<div class="form-group">
 				<label>Datos de Registro</label>
 				<input id="datos_registro_edit" name="datos_registro" class="form-control" placeholder="Datos de Registro">
 			</div>
-			
+
 			<div class="form-group">
 				<label>Abogado Redactor</label>
 				<input id="abogado_redactor_edit" name="abogado_redactor" class="form-control" placeholder="Abogado Redactor">
@@ -293,21 +289,19 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 	<div id="dialog-confirm-delete-doc" title="Eliminar Documento">
 		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>esta seguro de borrar este documento?.</p>
 	</div>
-	<!------------------------------------------ Modales Para inmueble --------------------------------->
+	<!-- Modales Para inmueble -->
 	<div id="dialog-new-inmueble" title="Nuevo Inmueble">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_inm_new">
 			<div class="form-group">
 				<label>Codigo</label>
-				<input id="id_inm" name="id_inm" class="form-control" placeholder="Codigo">
+				<input id="cod_inm" name="cod_inm" class="form-control" placeholder="Codigo">
 			</div>
 			<div id="ubicacion" style="margin-bottom:30px;">
 				<div style="display:inline-table; width:49%;">
 					<p><label>Archiprestazgo</label></p>
 					<select name="archiprestazgo" id="archiprestazgo" class="form-control">
 						<option value="ningun">Seleccionar</option>
-						<option value="-1">Arquidiocesis</option>
-						<option value="0">Fundac. y Asoc. Civiles</option>
 						<?php include 'selectArchiprestazgos.php'; ?>
 					</select>
 				</div>
@@ -321,7 +315,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<!-- / ubiacion -->
 			<div class="form-group">
 				<label>Direccion</label>
-				<input id="direccion" name="direccion" class="form-control">
+				<input id="direccion" name="direccion" placeholder="Direccion" class="form-control">
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
@@ -346,13 +340,13 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<div id="dialog-edit-inmueble" title="Editar Inmueble">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_inm_edit">
 			<div class="form-group">
 				<label>Codigo</label>
-				<span id='id_inm_edit'></span>
+				<span id='id_cod_edit'></span>
 				<input type="hidden" name="id_inm" id="id_inm_hidden">
 			</div>
 			<div style="margin-bottom:30px;">
@@ -360,8 +354,6 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 					<p><label>Archiprestazgo</label></p>
 					<select name="archiprestazgo" id="archiprestazgo_edit" class="form-control">
 						<option value="ningun">Seleccionar</option>
-						<option value="-1">Arquidiocesis</option>
-						<option value="0">Fundac. y Asoc. Civiles</option>
 						<?php include 'selectArchiprestazgos.php'; ?>
 					</select>
 				</div>
@@ -444,71 +436,71 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-	
+
 	<script src="../bower_components/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-	
+
 	 <!-- Bootstrap Core JavaScript -->
     <script src="../node_modules/moment/min/moment.min.js"></script>
-	
+
 	<!-- Jquery-UI -->
 	<script src="../jquery-ui/jquery-ui.js"></script>
-	
+
     <!-- Archiprestazgos y parroquias -->
     <script src="../js/archiParro.js"></script>
-	
+
 	<!-- index.js -->
 	<script src="../js/index.js"></script>
-	
+
 	<!-- index.js -->
 	<script src="../js/accordion.js"></script>
-	
-	<!-----------------------------------Scripts para Documentos ----------------------------------------------------->
+
+	<!-- Scripts para Documentos -->
 	<!-- modal-doc-new.js -->
 	<script src="../js/modal-doc-new.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/fechaDoc.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/paginadorDoc.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/cambiarFilasPPDoc.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/edit_doc.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/del_doc.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/show-inms-from-doc-modal.js"></script>
-	
+
 	<!-- add-inm-to-doc-modal.js -->
 	<script src="../js/add-inm-to-doc-modal.js"></script>
-	
-	<!-----------------------------------Scripts para Inmuebles ----------------------------------------------------->
+
+	<!-- Scripts para Inmuebles -->
 	<!-- modal-doc-new.js -->
 	<script src="../js/modal-inm-new.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/paginadorInm.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/cambiarFilasPPInm.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/edit_inm.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/del_inm.js"></script>
-	
+
 	<!-- edit_doc.js -->
 	<script src="../js/show-docs-from-inm-modal.js"></script>
-	
+
 	<!-- add-inm-to-doc-modal.js -->
 	<script src="../js/add-doc-to-inm-modal.js"></script>
 </body>

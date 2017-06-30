@@ -62,8 +62,6 @@
 											<p><label>Archiprestazgo</label></p>
 											<select name="archiprestazgo" id="archiprestazgo" class="form-control">
 												<option value="ningun">Seleccionar</option>
-												<option value="-1">Arquidiocesis</option>
-												<option value="0">Fundac. y Asoc. Civiles</option>
 												<?php include 'selectArchiprestazgos.php'; ?>
 											</select>
 										</div>

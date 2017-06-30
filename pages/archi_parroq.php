@@ -191,6 +191,10 @@
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_parro">
 			<div class="form-group">
+				<label>Codigo</label>
+				<input id="cod_parro" maxlength="5" name="cod_parro" class="form-control" placeholder="Codigo">
+			</div>
+			<div class="form-group">
 				<label>Nombre</label>
 				<input id="nom_parro" name="nom_parro" class="form-control" placeholder="Nombre">
 			</div>

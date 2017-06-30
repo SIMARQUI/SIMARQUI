@@ -1,16 +1,16 @@
   $(function() {
 	  alert('hola');
     /*var dialogNewDoc, form,
- 
+
       id_doc = $( "#id_doc" ),
       tipo = $( "#tipo" ),
       fechaPicker = $( "#fechaPicker" ),
 	  datos_registro	= $("#datos_registro"),
 	  abogado_redactor	= $("#abogado_redactor"),
-	  
+
       allFields = $( [] ).add( id_doc ).add( tipo ).add( fechaPicker ).add( datos_registro ).add( abogado_redactor ),
       tips = $( ".validateTips" );
- 
+
     function updateTips( t ) {
       tips
         .text( t )
@@ -19,7 +19,7 @@
         tips.removeClass( "ui-state-highlight", 1500 );
       }, 500 );
     }
- 
+
     function checkLength( o, n, min, max ) {
       if ( o.val().length > max || o.val().length < min ) {
         o.addClass( "ui-state-error" );
@@ -30,7 +30,7 @@
         return true;
       }
     }
- 
+
     function checkRegexp( o, regexp, n ) {
       if ( !( regexp.test( o.val() ) ) ) {
         o.addClass( "ui-state-error" );
@@ -40,11 +40,11 @@
         return true;
       }
     }
- 
+
     function createNewDoc() {
       /*var valid = true;
       allFields.removeClass( "ui-state-error" );
- 
+
       valid = valid && checkLength( id_doc, "Codigo del documento", 1, 16 );
       valid = valid && checkLength( tipo, "Tipo", 1, 60 );
 	  //valid = valid && checkLength( fechaPicker, "Fecha", 1, 10 );
@@ -54,10 +54,10 @@
       if ( valid ) {
 		//ADD
 		//información del formulario
-		var formData = new FormData(document.getElementById("form_doc_new"));		
-        //hacemos la petición ajax  
+		var formData = new FormData(document.getElementById("form_doc_new"));
+        //hacemos la petición ajax
         $.ajax({
-            url: 'guardarDoc.php',  
+            url: 'guardarDoc.php',
             type: 'POST',
             // Form data
             //datos del formulario
@@ -69,7 +69,7 @@
             //mientras enviamos el archivo
             /*beforeSend: function(){
                 //message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-                //showMessage(message)        
+                //showMessage(message)
             },*/
             //una vez finalizado correctamente
             //success: function(data){
@@ -89,13 +89,13 @@
             }*/
         //});
 		//FIN ADD
-		
+
         //dialogNewDoc.dialog( "close" );
       //}
       //return valid;
 	  //dialogNewDoc.dialog( "close" );
     //}
- 
+
     /*dialogNewDoc = $( "#dialog-new-document" ).dialog({
       autoOpen: false,
       height: 500,
@@ -112,15 +112,15 @@
         allFields.removeClass( "ui-state-error" );
       }
     });
- 
+
     form = dialogNewDoc.find( "form" ).on( "submit", function( event ) {
       event.preventDefault();
       createNewDoc();
     });
-	
+
     $( "#create-doc" ).button().on( "click", function() {
 		alert("entro");
       dialogNewDoc.dialog( "open" );
     });*/
-	
+
   });

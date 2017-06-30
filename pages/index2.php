@@ -26,7 +26,7 @@ include('../librerias/conexion.php');
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+
 	<!--  Jquery-ui css  -->
     <link rel="stylesheet" href="../jquery-ui/jquery-ui.css">
 
@@ -119,7 +119,7 @@ include('../librerias/conexion.php');
                                 <li><a href="#direcciones" data-toggle="tab">Direcciones</a>
                                 </li>
                             </ul>
-							
+
 							<!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="documentos">
@@ -165,17 +165,17 @@ include('../librerias/conexion.php');
 					<option value="Otros">Otros</option>
 				</select>
 			</div>
-			
+
 			<div id="fecha" style="margin-bottom:30px;">
 				<input type="text" id="datepicker" name="fechaDoc">
 			</div>
 			<!-- / fecha -->
-			
+
 			<div class="form-group">
 				<label>Datos de Registro</label>
 				<input id="dat_reg" name="dat_reg" class="form-control" placeholder="Datos de Registro">
 			</div>
-			
+
 			<div class="form-group">
 				<label>Abogado Redactor</label>
 				<input id="abog_redc" name="abog_redc" class="form-control" placeholder="Abogado Redactor">
@@ -188,7 +188,7 @@ include('../librerias/conexion.php');
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
-	
+
 	<!--<div id="dialog-form" title="Nuevo Inmueble">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form1">
@@ -197,8 +197,6 @@ include('../librerias/conexion.php');
 					<p><label>Administrador</label></p>
 					<select name="archiprestazgo" id="archiprestazgo" class="form-control">
 						<option value="ningun">Seleccionar</option>
-						<option value="-1">Arquidiocesis</option>
-						<option value="0">Fundac. y Asoc. Civiles</option>
 						<?php include 'selectArchiprestazgos.php'; ?>
 					</select>
 				</div>
@@ -209,10 +207,10 @@ include('../librerias/conexion.php');
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label>Direccion</label>
-				<input id="direccion" name="direccion" class="form-control">
+				<input id="direccion" name="direccion" class="form-control" placeholder="Direccion">
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
@@ -237,7 +235,7 @@ include('../librerias/conexion.php');
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>-->
-	
+
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -249,22 +247,22 @@ include('../librerias/conexion.php');
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-	
+
 	<!-- Jquery-UI -->
 	<script src="../jquery-ui/jquery-ui.js"></script>
-	
+
     <!-- Archiprestazgos y parroquias -->
     <script src="../js/archiParro.js"></script>
-	
+
 	<!-- index.js -->
 	<script src="../js/index.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/modal-doc-new.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/fechaDoc.js"></script>
-	
+
 	<!-- modal-doc-new.js -->
 	<script src="../js/paginadorDoc.js"></script>
 </body>
