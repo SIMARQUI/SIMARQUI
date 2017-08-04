@@ -142,8 +142,20 @@
     });
 
     $( "#create-inm" ).button().on( "click", function(event) {
-	  event.preventDefault();
-	  tips.text('');
-      dialogNewInm.dialog( "open" );
+        event.preventDefault();
+        tips.text('');
+       dialogNewInm.dialog( "open" );
     });
-  });
+
+    $("#archiprestazgo, #parroquia").each(function (key, select) {
+        $(select).on("change", function () {
+            var archiprestazgo = $("#archiprestazgo").val();
+            var parroquia = $("#parroquia").val();
+            $.get("next_code_inmueble.php?archiprestazgo=" + archiprestazgo + "&parroquia=" + parroquia, function(data) {
+                $("#cod_inm_show").html(data);
+                $("#cod_inm").val(data);
+            });
+        });
+    });
+
+});

@@ -119,23 +119,24 @@
     });
 
     $( "#mostrarInmuebles" ).on( "click", ".edit_inm", function(event) {
-	  event.preventDefault();
-	  tips.text('');
-	  $.getJSON("enviarDatosDeInm.php?id_inm="+$(this).data('inm'), function(data){
-		  $("#id_cod_edit").text(data.cod_inm);
-		  $("#id_inm_hidden").val(data.id_inm);
-		  $("#archiprestazgo_edit").val(data.archiprestazgo);
-		  obtSelectParros(data.archiprestazgo, data.parroquia);
+        event.preventDefault();
+        tips.text('');
+        $.getJSON("enviarDatosDeInm.php?id_inm="+$(this).data('inm'), function(data) {
+            $("#id_inm").val(data.id_inm);
+            $("#id_cod_edit").text(data.cod_inm);
+            $("#cod_inm_edit").val(data.cod_inm);
+            $("#archiprestazgo_edit").val(data.archiprestazgo);
+            obtSelectParros(data.archiprestazgo, data.parroquia);
 
-		  $("#direccion_edit").val(data.direccion);
-		  $("#modo_adq_edit").val(data.modo_adq);
-		  $("#metraje_edit").val(data.metraje);
-		  $("#tipo_inm_edit").val(data.tipo_inm);
-		  $("#linderos_edit").val(data.linderos);
-		  $("#descripcion_edit").val(data.descripcion);
-	  });
+            $("#direccion_edit").val(data.direccion);
+            $("#modo_adq_edit").val(data.modo_adq);
+            $("#metraje_edit").val(data.metraje);
+            $("#tipo_inm_edit").val(data.tipo_inm);
+            $("#linderos_edit").val(data.linderos);
+            $("#descripcion_edit").val(data.descripcion);
+        });
 
-      dialogEditInm.dialog( "open" );
+        dialogEditInm.dialog( "open" );
     });
 
 	function obtSelectParros(arch_val, parro){

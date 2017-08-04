@@ -5,7 +5,8 @@ $(function(){
 	var errorBusqInm = $("#errorBusqInm");
 	var archiprestazgo_busqueda = $("#archiprestazgo_busqueda");
 	var parroquia_busqueda = $("#parroquia_busqueda");
-	
+	var direccion_busqueda = $("#direccion_busqueda");
+
 	$("#buscarDoc").on("click", function (){
 		errorBusqDoc.text("");
 		if(fechaValida()){
@@ -14,12 +15,12 @@ $(function(){
 			});
 		}
 	});
-	
+
 	function fechaValida(){
 		if( (desdePicker.val() != '') && (hastaPicker.val() != '') ) {
 			var desde = desdePicker.datepicker('getDate').getDate();
 			var hasta = hastaPicker.datepicker('getDate').getDate();
-			
+
 			if(desde > hasta) {
 				errorBusqDoc.text("Rango de fecha invalida");
 				return false;
@@ -27,7 +28,7 @@ $(function(){
 		}
 		return true;
 	}
-	 
+
 	$("#ver_todos_doc").click(function(){
 		$.get("procesar.php", function(data){
 			$("#mostrarDocumentos").empty().html(data);
@@ -40,30 +41,28 @@ $(function(){
 			$("#busquedaDocumento").show();
 		}
 	});*/
-	
+
 	/*$("#abrirBusquedaDocumento").click(function(){
-		
+
 	});*/
-	
-	$("#buscarInm").on("click", function (){
+
+	$("#buscarInm").on("click", function () {
 		errorBusqInm.text("");
-		if(propietarioValido()){
-			$.get("procesarInm.php?"+$("#form2").serialize(), function(data){
+		if(propietarioValido()) {
+			$.get("procesarInm.php?"+$("#form2").serialize(), function(data) {
 				$("#mostrarInmuebles").empty().html(data);
 			});
 		}
 	});
-	
-	function propietarioValido(){
-		if( (archiprestazgo_busqueda.val() != "ningun") && (archiprestazgo_busqueda.val() != -1) ){
-			if(parroquia_busqueda.val() == "ningun"){
-				errorBusqInm.text("Debe seleccionar algo en el campo Parroquia");
-				return false;
-			}
+
+	function propietarioValido() {
+		if ((archiprestazgo_busqueda.val() == "ningun" && direccion_busqueda.val() == '')) {
+			errorBusqInm.text("Debe seleccionar algo en el campo Archiprestazgo o Direccion");
+			return false;
 		}
 		return true;
 	}
-	
+
 	$("#ver_todos_inm").click(function(){
 		$.get("procesarInm.php", function(data){
 			$("#mostrarInmuebles").empty().html(data);
@@ -76,8 +75,8 @@ $(function(){
 			$("#busquedaInmueble").show();
 		}
 	});*/
-	
+
 	/*$("#abrirBusquedaInmueble").click(function(){
-		
+
 	});*/
 });

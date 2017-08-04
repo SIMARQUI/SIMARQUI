@@ -9,7 +9,7 @@
 			<div class="panel-heading" style="border-left:1px #DDD solid; border-right:1px #DDD solid;">
 				<?php if($_SESSION['rol']=='Administrador'){//tiene permiso para agregar Inmueble
 				?>
-				<button id='create-inm' style='color:black' class='btn btn-primary'>Crear Nuevo</button>
+				<button id='create-inm' class='btn btn-primary'>Crear Nuevo</button>
 				<?php } ?>
 				<select name="filasPPInm" id="filasPPInm" style="width:80px">
 					<option value="5">5</option>

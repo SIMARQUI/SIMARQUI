@@ -96,4 +96,15 @@ $(function(){
 			}
 
 		});
+
+	$("#archiprestazgo_edit, #parroquia_edit").each(function (key, select) {
+        $(select).on("change", function () {
+            var archiprestazgo = $("#archiprestazgo_edit").val();
+            var parroquia = $("#parroquia_edit").val();
+            $.get("next_code_inmueble.php?archiprestazgo=" + archiprestazgo + "&parroquia=" + parroquia, function(data) {
+				$("#id_cod_edit").html(data);
+                $("#cod_inm_edit").val(data);
+            });
+        });
+    });
 });

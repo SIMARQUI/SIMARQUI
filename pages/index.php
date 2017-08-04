@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+//session_unset();
+
 if(!isset($_SESSION['usuario']))
 	header('location: login.php');
 
@@ -10,7 +12,10 @@ include('../librerias/conexion.php');
 
 $_SESSION['ultima_consulta'] = "select id_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
 $_SESSION['ultima_pagina'] = 1;
-$_SESSION['ultima_consulta_inmueble'] = "select id_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos from inmueble order by fecha_add_inm DESC";
+$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, ".
+										"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
+										"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro ".
+										"from inmueble order by fecha_add_inm DESC";
 $_SESSION['ultima_pagina_inmueble'] = 1;
 ?>
 
@@ -295,7 +300,8 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 		<form role="form" id="form_inm_new">
 			<div class="form-group">
 				<label>Codigo</label>
-				<input id="cod_inm" name="cod_inm" class="form-control" placeholder="Codigo">
+				<p class="form-control-static" id="cod_inm_show">-</p>
+				<input id="cod_inm" name="cod_inm" type="hidden">
 			</div>
 			<div id="ubicacion" style="margin-bottom:30px;">
 				<div style="display:inline-table; width:49%;">
@@ -346,8 +352,10 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 		<form role="form" id="form_inm_edit">
 			<div class="form-group">
 				<label>Codigo</label>
-				<span id='id_cod_edit'></span>
-				<input type="hidden" name="id_inm" id="id_inm_hidden">
+				<input id="id_inm" name="id_inm" type="hidden">
+
+				<p class="form-control-static" id="id_cod_edit">-</p>
+				<input id="cod_inm_edit" name="cod_inm_edit" type="hidden">
 			</div>
 			<div style="margin-bottom:30px;">
 				<div style="display:inline-table; width:49%;">

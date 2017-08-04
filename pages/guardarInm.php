@@ -17,23 +17,9 @@ $tipo_inm 		= $_REQUEST['tipo_inm'];
 $linderos 		= $_REQUEST['linderos'];
 $descripcion 	= $_REQUEST['descripcion'];
 
-$consulta = "insert into inmueble (cod_inm, direccion, modo_adq, metraje, tipo_inm, descripcion, linderos)
-			values ('$cod_inm', '$direccion', '$modo_adq', '$metraje', '$tipo_inm', '$descripcion', '$linderos')";
+$consulta = "insert into inmueble (cod_inm, direccion, modo_adq, metraje, tipo_inm, descripcion, linderos, archiprestazgo, parroquia)
+			values ('$cod_inm', '$direccion', '$modo_adq', '$metraje', '$tipo_inm', '$descripcion', '$linderos', '$archiprestazgo', '$parroquia')";
 
 mysqli_query($conexion, $consulta) or die("Error en la insercion de inmueble");
 
 $id_inm = mysqli_insert_id($conexion);
-
-if($archiprestazgo == -1) {
-	$consulta = "insert into inm_pert_arqui (id_inmffff) values ($id_inm)";
-}
-else {
-	if($archiprestazgo == 0) {
-		$consulta = "insert into inm_pert_fund (id_inmff, id_fundff) values ($id_inm, $parroquia)";
-	}
-	else {
-		$consulta = "insert into inm_pert_parro (id_inmf, id_parrof) values ($id_inm, $parroquia)";
-	}
-}
-
-mysqli_query($conexion, $consulta) or die("Error en la insercion del propietario del inmueble");

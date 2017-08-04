@@ -8,7 +8,10 @@
 	require_once('../librerias/utiles.php');
 
 	$conexion = conectar();
-	$consulta_ejecutar = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos from inmueble order by fecha_add_inm DESC";
+	$consulta_ejecutar = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, ".
+						 	"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
+							"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro ".
+							"from inmueble order by fecha_add_inm DESC";
 
 	$registros = mysqli_query($conexion, $consulta_ejecutar) or die('Problemas con la consulta');
 	$num_total_registros = mysqli_num_rows($registros);
@@ -56,11 +59,6 @@
 					"<div style='float:right; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='new-doc-to-inm' href='#'><img src='../document_new.png' width='48px' height='51px' alt='Crear nuevo Documento'></a></div>";
 			}
 
-			$relateds = mysqli_query($conexion, "select nom_parro, id_parro, id_archif from parroquia, inm_pert_parro where (id_inmf = ".$fila['id_inm'].") And (id_parro = id_parrof)");
-			$row = mysqli_fetch_array($relateds);
-			$fila['archiprestazgo'] = $row['id_archif'];
-			$fila['parroquia'] = $row['nom_parro'];
-
 			echo		"<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='ver_docs' href='#'><img src='../documents2.png' width='48px' height='51px' alt='Ver Documentos'></a></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -68,8 +66,8 @@
 							<!-- Tab panes -->
 							<div class='tab-content'>
 								<div class='tab-pane fade in active' id='home-pills'>
-									<p><span style='font-weight:bold'>Archiprestazgo:</span> " . $fila['archiprestazgo'] . "</p>
-									<p><span style='font-weight:bold'>Parroquia:</span> " . $fila['parroquia'] . "</p>
+									<p><span style='font-weight:bold'>Archiprestazgo:</span> " . $fila['nom_arch'] . "</p>
+									<p><span style='font-weight:bold'>Parroquia:</span> " . $fila['nom_parro'] . "</p>
 									<p><span style='font-weight:bold'>Direccion:</span> ".$fila['direccion']."</p>
 									<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo_inm']."</p>
 									<p><span style='font-weight:bold'>Modo de adquisicion:</span> ".$fila['modo_adq']."</p>
