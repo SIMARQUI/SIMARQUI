@@ -1,23 +1,19 @@
 <?php
 	session_start();
-	
+
 	if(!isset($_SESSION['usuario']))
 		header('location: login.php');
 
 	require_once('../librerias/conexion.php');
 	require_once('../librerias/utiles.php');
 
-	require_once('../FirePHPCore/FirePHP.class.php');
 	ob_start();
-	
-	$firephp = FirePHP::getInstance(TRUE);
-	$firephp->log('fire ta listo', 'Info');
-	
+
 	$conexion = conectar();
 	$pagActual = 1;
 	$_SESSION['ultima_pagina_fundacion'] = $pagActual;
 	$consulta_ejecutar = $_SESSION['ultima_consulta_fundacion'];
-	
+
 	if(isset($_REQUEST['numPage']) or isset($_REQUEST['filasPPFund']) or isset($_REQUEST['edit_fund']))
 	{
 		if(isset($_REQUEST['numPage']))
@@ -31,40 +27,40 @@
 			{
 				$consultaFilasPP = mysqli_query($conexion, "select filasPPFund from usuario where login = '".$_SESSION['usuario']."'");
 				$getFilasPP = mysqli_fetch_array($consultaFilasPP);
-				
+
 				$filasPPAnt = $getFilasPP['filasPPFund'];
-				
+
 				$filasPPFund = $_REQUEST['filasPPFund'];
-				
+
 				mysqli_query($conexion, "update usuario set filasPPFund = $filasPPFund where login = '".$_SESSION['usuario']."'");
-				
+
 				$primera_fila_de_ultima_pagina = ( ($_SESSION['ultima_pagina_fundacion'] - 1) * $filasPPAnt ) + 1;
-				
+
 				$pagActual = ceil($primera_fila_de_ultima_pagina / $filasPPFund);
-				
+
 				$_SESSION['ultima_pagina_fundacion'] = $pagActual;
 			}
 			else
 			{
 				$pagActual = $_SESSION['ultima_pagina_fundacion'];
 			}
-			
+
 		}
-		
+
 		$consulta_ejecutar = $_SESSION['ultima_consulta_fundacion'];
-		
-		
+
+
 	}
-	
+
 	/*echo	"<div class='row'>
 				<div class='col-lg-12'>
 					<p>consulta ejecutada: $consulta_ejecutar</p>
 				</div>
 			</div>";*/
-	
-	
-	
-	
+
+
+
+
 	$registros = mysqli_query($conexion, $consulta_ejecutar) or die('Problemas con la consulta');
 	$num_total_registros = mysqli_num_rows($registros);
 
@@ -73,21 +69,21 @@
 					<p>Elementos encontrados: $num_total_registros</p>
 				</div>
 			</div>";
-	
+
 	if($num_total_registros > 0)
 	{
 		if(!isset($filasPPFund))
 		{
 			$consultaFilasPP = mysqli_query($conexion, "select filasPPFund from usuario where login = '".$_SESSION['usuario']."'");
 			$getFilasPP = mysqli_fetch_array($consultaFilasPP);
-			
+
 			$filasPPFund = $getFilasPP['filasPPFund'];
 		}
-		
+
 		//contando el desplazamiento
 		$offset = ($pagActual - 1) * $filasPPFund;
 		$total_paginas = ceil($num_total_registros / $filasPPFund);
-		
+
 		$registros = mysqli_query($conexion, "$consulta_ejecutar LIMIT $offset, $filasPPFund") or die(mysqli_error($conexion));
 
         echo 		"<div class='row'>
@@ -124,21 +120,21 @@
 
         echo 		"</div>
         			 </div>";
-		
-        
-		
+
+
+
 		if($total_paginas > 1)
 		{
 			echo 		"<div class='row''>
 							<div class='col-lg-12'>";
-						
+
 			if ($pagActual != 1)
 				echo "<a href='#' class='paginarFund' style='margin-right:10px' data-numpage='".($pagActual-1)."'>Anterior</a>";
-			
+
 			if( ($pagActual >= 1) And ($pagActual <= 6) )
 			{
 				$lim_inf = 1;
-				
+
 				if($total_paginas < 10)
 					$lim_sup = $total_paginas;
 				else
@@ -164,7 +160,7 @@
 					$lim_inf = $lim_sup - 9;
 				}
 			}
-			
+
 			for($i = $lim_inf; $i <= $lim_sup; $i++)
 			{
 				if($i == $pagActual)
@@ -172,13 +168,13 @@
 				else
 					echo "<a class='paginarFund' href='#' style='margin-right:10px' data-numpage='$i'>$i</a>";
 			}
-			
+
 			if($pagActual != $total_paginas)
 				echo "<a class='paginarFund' href='#' style='margin-right:10px' data-numpage='".($pagActual+1)."'>Siguiente</a>";
 			echo "</div>";
 			echo "</div>";
 		}
-		
+
 	}
 	else
 	{

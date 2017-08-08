@@ -57,7 +57,7 @@ INSERT INTO `archiprestazgo` (`id_arch`, `nom_arch`, `cod_arch`) VALUES
 CREATE TABLE IF NOT EXISTS `documento` (
   `id_doc` int(11) NOT NULL AUTO_INCREMENT,
   `cod_doc` varchar(11) NOT NULL,
-  `tipo` varchar(60) NOT NULL,
+  `tipo` int(11) NOT NULL,
   `datos_registro` varchar(100) NOT NULL,
   `abogado_redactor` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
@@ -257,32 +257,33 @@ CREATE TABLE IF NOT EXISTS `se_refiere` (
 CREATE TABLE IF NOT EXISTS `tipo_documento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
+  `codigo` varchar(5) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre` (`nombre`)
+  UNIQUE KEY `codigo` (`codigo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Volcado de datos para la tabla `tipo_documento`
 --
 
-INSERT INTO `tipo_documento` (`id`, `nombre`) VALUES
-(9, 'Adjudicación'),
-(13, 'Anticresis'),
-(15, 'Arrendamiento'),
-(2, 'Cesion o Traspaso'),
-(1, 'Compra Venta'),
-(3, 'Donaciones'),
-(14, 'Expropiación'),
-(11, 'Hipoteca'),
-(8, 'Liquidación de Hipoteca'),
-(10, 'Liquidación y Partición de Bienes'),
-(6, 'Notas Aclaratorias'),
-(17, 'Otros'),
-(4, 'Permutas'),
-(12, 'Petición Para Construcción'),
-(16, 'Retracto Legal'),
-(7, 'Testamento'),
-(5, 'Titulo Supletorio');
+INSERT INTO `tipo_documento` (`id`, `nombre`, `codigo`) VALUES
+(9, 'Adjudicación', 'AJ'),
+(13, 'Anticresis', 'AN'),
+(15, 'Arrendamiento', 'AR'),
+(2, 'Cesion o Traspaso', 'CT'),
+(1, 'Compra Venta', 'CV'),
+(3, 'Donaciones', 'DO'),
+(14, 'Expropiación', 'EX'),
+(11, 'Hipoteca', 'HI'),
+(8, 'Liquidación de Hipoteca', 'LH'),
+(10, 'Liquidación y Partición de Bienes', 'LB'),
+(6, 'Notas Aclaratorias', 'NA'),
+(17, 'Otros', 'OT'),
+(4, 'Permutas', 'PE'),
+(12, 'Petición Para Construcción', 'PC'),
+(16, 'Retracto Legal', 'RL'),
+(7, 'Testamento', 'TE'),
+(5, 'Titulo Supletorio', 'TS');
 
 -- --------------------------------------------------------
 

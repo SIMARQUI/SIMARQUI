@@ -39,10 +39,8 @@ $(function(){
 			var arch_val = $("#archiprestazgo_busqueda").val();
 			parroquia_busqueda.empty().html("<option value='ningun'>Seleccionar...</option>");
 
-			if( (arch_val != 'ningun') && (arch_val != '-1') )
-			{
-				if(arch_val == '0')
-				{
+			if( (arch_val != 'ningun') && (arch_val != '-1')) {
+				if(arch_val == '0') {
 					enlace = "obtSelectFunds.php";
 					$.ajax({
 						url: enlace,
@@ -50,22 +48,19 @@ $(function(){
 							parroquia_busqueda.append(result);
 						}
 					});
-				}
-				else
-				{
+				} else {
 					enlace = "obtSelectParros.php?id_archif="+$("#archiprestazgo_busqueda").val();
 					$.ajax({
 						url: enlace,
-						success: function(result){
+						success: function(result) {
 							parroquia_busqueda.append(result);
 						}
 					});
 				}
 			}
-
 		});
 
-		$("#archiprestazgo_edit").on("change", function(){
+		$("#archiprestazgo_edit").on("change", function() {
 
 			var enlace;
 			var arch_val = $("#archiprestazgo_edit").val();

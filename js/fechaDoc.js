@@ -17,9 +17,9 @@ $(function(){
 		firstDay: 0,
 		initStatus: 'Selecciona la fecha', isRTL: false
 	};
-	
+
 	$.datepicker.setDefaults($.datepicker.regional['es']);
-	
+
 	$( "#desdePicker" ).datepicker({
       changeMonth: true,
       changeYear: true,
@@ -32,7 +32,7 @@ $(function(){
 			$.datepicker._clearDate(this);
 		}
 	});
-	
+
 	$( "#hastaPicker" ).datepicker({
       changeMonth: true,
       changeYear: true,
@@ -45,22 +45,22 @@ $(function(){
 			$.datepicker._clearDate(this);
 		}
 	});
-	
-	$( "#fechaPicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-	  yearRange: "1900:-c+00",
-	  maxDate: "+0m +0d",
-	  altField: "#fecha",
-	  altFormat: "yy-mm-dd"
+
+	$("#fechaPicker").datepicker({
+  		changeMonth: true,
+      	changeYear: true,
+	  	yearRange: "1900:-c+00",
+	  	maxDate: "+0m +0d",
+	  	altField: "#fecha",
+	  	altFormat: "yy-mm-dd"
     });
-	
-	$( "#fecha_edit" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-	  yearRange: "1900:-c+00",
-	  maxDate: "+0m +0d",
-	  altField: "#fecha_edit_hidden",
-	  altFormat: "yy-mm-dd"
+
+	$("#fecha_edit").datepicker({
+      	changeMonth: true,
+      	changeYear: true,
+	  	yearRange: "1900:-c+00",
+	  	maxDate: "+0m +0d",
+	  	altField: "#fecha_edit_hidden",
+	  	altFormat: "yy-mm-dd"
     });
 });

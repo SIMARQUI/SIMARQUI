@@ -141,7 +141,7 @@
       createInm();
     });
 
-    $( "#create-inm" ).button().on( "click", function(event) {
+    $("#create-inm").button().on( "click", function(event) {
         event.preventDefault();
         tips.text('');
        dialogNewInm.dialog( "open" );

@@ -45,4 +45,3 @@
 						window.open(url, '', '');
 					});
 				</script>";
-?>

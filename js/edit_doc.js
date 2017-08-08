@@ -133,9 +133,10 @@
     $( "#mostrarDocumentos" ).on( "click", ".edit_doc", function(event) {
 	  event.preventDefault();
 	  tips.text('');
-	  $.getJSON("enviarDatosDeDoc.php?id_doc="+$(this).data('doc'), function(data){
-		  $("#cod_doc_edit").text(data.cod_doc);
-		  $("#id_doc_hidden").val(data.id_doc);
+	  $.getJSON("enviarDatosDeDoc.php?id_doc="+$(this).data('doc'), function(data) {
+          $("#id_doc").val(data.id_doc);
+		  $("#cod_doc_edit_show").text(data.cod_doc);
+          $("#cod_edit_doc").val(data.cod_doc);
 		  $("#tipo_edit").val(data.tipo);
 
 		  //console.log('fecha recibida: '+data.fecha);
@@ -153,4 +154,14 @@
 
       dialogEditDoc.dialog( "open" );
     });
+
+
+    $("#tipo_edit").on("change", function () {
+        var tipo = $("#tipo_edit").val();
+        $.get("next_code_documento.php?tipo=" + tipo, function(data) {
+            $("#cod_doc_edit_show").html(data);
+            $("#cod_edit_doc").val(data);
+        });
+    });
+
   });

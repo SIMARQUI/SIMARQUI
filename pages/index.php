@@ -10,7 +10,7 @@ include('../librerias/mensajes.php');
 include('../librerias/utiles.php');
 include('../librerias/conexion.php');
 
-$_SESSION['ultima_consulta'] = "select id_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
+$_SESSION['ultima_consulta'] = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
 $_SESSION['ultima_pagina'] = 1;
 $_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, ".
 										"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
@@ -179,21 +179,20 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 		<form role="form" id="form_doc_new" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>Codigo</label>
-				<input id="cod_doc" name="cod_doc" class="form-control" placeholder="Codigo">
+				<p class="form-control-static" id="cod_doc_show">-</p>
+				<input id="cod_doc" name="cod_doc" type="hidden">
 			</div>
 			<div class="form-group">
 				<label>Tipo</label>
 				<select id="tipo" name="tipo" class="form-control" >
 					<option value="ningun" size="10">Seleccionar...</option>
-					<?php
-						obtTiposDocs();
-					?>
+					<?php obtTiposDocs(); ?>
 				</select>
 			</div>
 
 			<div class="form-group">
 				<label>Fecha</label>
-				<input type="text" id="fechaPicker" name="fechaPicker" readonly="readonly">
+				<input type="text" id="fechaPicker" name="fechaPicker" readonly="readonly" placeholder="Fecha" class="form-control">
 				<input type="hidden" id="fecha" name="fecha">
 			</div>
 			<!-- / fecha -->
@@ -220,9 +219,10 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_doc_edit" enctype="multipart/form-data">
 			<div class="form-group">
+				<input type="hidden" name="id_doc" id="id_doc">
 				<label>Codigo</label>
-				<span id='cod_doc_edit'></span>
-				<input type="hidden" name="id_doc" id="id_doc_hidden">
+				<p class="form-control-static" id="cod_doc_edit_show">-</p>
+				<input type="hidden" name="cod_doc" id="cod_edit_doc">
 			</div>
 			<div class="form-group">
 				<label>Tipo</label>
@@ -236,7 +236,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 
 			<div class="form-group">
 				<label>Fecha</label>
-				<input type="text" id="fecha_edit" name="fechaPicker">
+				<input type="text" id="fecha_edit" name="fechaPicker" class="form-control">
 				<input type="hidden" id="fecha_edit_hidden" name="fecha">
 			</div>
 			<!-- / fecha -->

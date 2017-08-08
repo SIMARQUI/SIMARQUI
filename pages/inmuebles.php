@@ -179,17 +179,7 @@
 			<div class="form-group">
 				<label>Tipo</label>
 				<select id="tipo" name="tipo" class="form-control" >
-					<option value="Compra-Venta">Compra-Venta</option>
-					<option value="Sesion o traspaso">Sesion o traspaso</option>
-					<option value="Donaciones">Donaciones</option>
-					<option value="Permutas">Permutas</option>
-					<option value="Titulo Supletorio">Titulo Supletorio</option>
-					<option value="Notas Aclaratorias">Notas Aclaratorias</option>
-					<option value="Testamento">Testamento</option>
-					<option value="Liquidacion de Hipotecas">Liquidacion de Hipotecas</option>
-					<option value="Adjudicacion">Adjudicacion</option>
-					<option value="Liquidacion y parte de bienes">Liquidacion y parte de bienes</option>
-					<option value="Otros">Otros</option>
+					<?php obtTiposDocs(); ?>
 				</select>
 			</div>
 

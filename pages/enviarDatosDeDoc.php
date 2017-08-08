@@ -8,4 +8,3 @@ $registros = mysqli_query($conexion, "select * from documento where id_doc = '$i
 $fila = mysqli_fetch_array($registros);
 
 echo json_encode($fila);
-?>

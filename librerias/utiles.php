@@ -1,32 +1,26 @@
 <?php
-	function obtAnyoAct()
-	{
+	function obtAnyoAct() {
 		return date("Y");
 	}
-	
-	function obtArrayMeses()
-	{
+
+	function obtArrayMeses() {
 		$meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
-					"Octubre", "Noviembre", "Diciembre"); 
+					"Octubre", "Noviembre", "Diciembre");
 		return $meses;
 	}
-	
-	function obtMes($mes)
-	{
+
+	function obtMes($mes) {
 		$meses = obtArrayMeses();
-		
+
 		return ($meses[$mes-1]);
 	}
-	
-	function obtTiposDocs()
-	{
+
+	function obtTiposDocs() {
 		$conexion = conectar();
-		
-		$registros = mysqli_query($conexion, "select * from tipo_documento") or die("Error al consultar la tabla tipo_documento");
-		
-		while($fila = mysqli_fetch_array($registros))
-		{
-			echo "<option value='".$fila['nombre']."'>".$fila['nombre']."</option>\n";
+
+		$registros = mysqli_query($conexion, "select * from tipo_documento order by codigo, nombre") or die("Error al consultar la tabla tipo_documento");
+
+		while($fila = mysqli_fetch_array($registros)) {
+			echo "<option value='".$fila['id']."'>" . $fila['codigo'] . ' - ' . $fila['nombre'] . "</option>\n";
 		}
 	}
-?>

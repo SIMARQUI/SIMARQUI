@@ -6,7 +6,7 @@
       id_doc = $("#id_doc");
       cod_doc = $("#cod_doc");
 	  tipo = $( "#tipo" ),
-	  fechaPicker = $( "#fechaPicker" ),
+	  fechaPicker = $("#fechaPicker"),
 	  datos_registro	= $("#datos_registro"),
 	  abogado_redactor	= $("#abogado_redactor"),
 
@@ -164,9 +164,18 @@
       createDoc();
     });
 
-    $( "#create-doc" ).button().on( "click", function(event) {
+    $("#create-doc").button().on( "click", function(event) {
 	  event.preventDefault();
 	  tips.text('');
       dialogNewDoc.dialog( "open" );
     });
-  });
+
+    $("#tipo").on("change", function () {
+        var tipo = $("#tipo").val();
+        $.get("next_code_documento.php?tipo=" + tipo, function(data) {
+            $("#cod_doc_show").html(data);
+            $("#cod_doc").val(data);
+        });
+    });
+
+});

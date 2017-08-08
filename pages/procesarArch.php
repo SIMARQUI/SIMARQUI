@@ -7,11 +7,7 @@
 	require_once('../librerias/conexion.php');
 	require_once('../librerias/utiles.php');
 
-	require_once('../FirePHPCore/FirePHP.class.php');
 	ob_start();
-
-	$firephp = FirePHP::getInstance(TRUE);
-	$firephp->log('fire ta listo', 'Info');
 
 	$conexion = conectar();
 	$pagActual = 1;
