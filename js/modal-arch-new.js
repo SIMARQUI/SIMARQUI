@@ -3,9 +3,10 @@
 
       // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
       //emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-      nom_arch = $( "#nom_arch" ),
+      nom_arch = $("#nom_arch"),
+      cod_arch = $("#cod_arch"),
 
-      allFields = $( [] ).add( nom_arch ),
+      allFields = $([]).add(nom_arch).add(cod_arch),
       tips = $( ".validateTips" );
 
     function updateTips( t ) {
@@ -40,9 +41,10 @@
 
     function createArch() {
         var valid = true;
-        allFields.removeClass( "ui-state-error" );
+        allFields.removeClass("ui-state-error");
 
-        valid = valid && checkLength( nom_arch, "Nombre", 1, 200 );
+        valid = valid && checkLength(nom_arch, "Nombre", 1, 200);
+        valid = valid && checkLength(cod_arch, "Codigo", 1, 2);
 
         if (valid) {
             $.get("guardarArch.php?" + $("#form_arch_new").serialize(), function() {
@@ -54,21 +56,21 @@
         return valid;
     }
 
-    dialogNewArch = $( "#dialog-new-archiprestazgo" ).dialog({
-      autoOpen: false,
-      height: 500,
-      width: 700,
-      modal: true,
-      buttons: {
-        "Guardar cambios": createArch,
-        Cancelar: function() {
-          dialogNewArch.dialog( "close" );
+    dialogNewArch = $("#dialog-new-archiprestazgo").dialog({
+        autoOpen: false,
+        height: 500,
+        width: 700,
+        modal: true,
+        buttons: {
+            "Guardar cambios": createArch,
+            Cancelar: function() {
+                dialogNewArch.dialog("close");
+            }
+        },
+        close: function() {
+            form[ 0 ].reset();
+            allFields.removeClass("ui-state-error");
         }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
     });
 
     form = dialogNewArch.find( "form" ).on( "submit", function( event ) {
@@ -76,9 +78,10 @@
       createArch();
     });
 
-    $( "#create-arch" ).button().on( "click", function(event) {
-	  event.preventDefault();
+    $("#create-arch").button().on("click", function(event) {
+        event.preventDefault();
 
-      dialogNewArch.dialog( "open" );
+        dialogNewArch.dialog("open");
     });
-  });
+
+});

@@ -144,8 +144,8 @@
 
     dialogNewDoc = $( "#dialog-new-document" ).dialog({
       autoOpen: false,
-      height: 500,
-      width: 700,
+      height: 600,
+      width: 1000,
       modal: true,
       buttons: {
         "Guardar cambios": createDoc,

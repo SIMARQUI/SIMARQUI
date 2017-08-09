@@ -129,7 +129,7 @@
                 <div class="col-lg-12">
 					<div class="panel panel-success" style="border-left:none; border-right:none;">
 						<div class="panel-heading" style="border-left:1px #DDD solid; border-right:1px #DDD solid;">
-							<?php if($_SESSION['rol']=='Administrador'){//tiene permiso para agregar Inmueble
+							<?php if($_SESSION['rol']=='Administrador') {//tiene permiso para agregar Inmueble
 							?>
 							<button id='create-arch' style='color:black' class='btn btn-primary'>Crear Nuevo</button>
 							<?php } ?>
@@ -163,6 +163,10 @@
 	<div id="dialog-new-archiprestazgo" title="Nuevo Archiprestazgo">
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_arch_new">
+			<div class="form-group">
+				<p><label>Codigo</label></p>
+				<input id="cod_arch" name="cod_arch" class="form-control" maxlength="2" placeholder="Codigo">
+			</div>
 			<div class="form-group">
 				<p><label>Nombre</label></p>
 				<input id="nom_arch" name="nom_arch" class="form-control" placeholder="Nombre">
@@ -215,6 +219,11 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="dialog-confirm-delete-arch" title="Eliminar Archiprestazgo">
+		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>esta seguro de borrar este Archiprestazgo?.</p>
+	</div>
+
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -241,6 +250,9 @@
 
 	<!-- edit_doc.js -->
 	<script src="../js/edit_arch.js"></script>
+
+	<!-- del_arch.js -->
+	<script src="../js/del_arch.js"></script>
 
 	<!-- edit_doc.js -->
 	<script src="../js/show-parros-from-arch-modal.js"></script>

@@ -1,13 +1,13 @@
 $(function(){
 	var id_doc;
-	$( "#mostrarDocumentos" ).on( "click", ".del_doc", function(event) {
+	$("#mostrarDocumentos").on("click", ".del_doc", function(event) {
 	  event.preventDefault();
-	  
+
 	  //var band = confirm("esta seguro de eliminar?");
 	  id_doc = $(this).data('doc');
 	  $("#dialog-confirm-delete-doc").dialog("open");
     });
-	
+
 	$( "#dialog-confirm-delete-doc" ).dialog({
 	  autoOpen: false,
       resizable: false,

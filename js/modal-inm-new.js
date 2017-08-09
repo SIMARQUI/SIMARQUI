@@ -121,9 +121,9 @@
 
     dialogNewInm = $( "#dialog-new-inmueble" ).dialog({
       autoOpen: false,
-      height: 500,
-      width: 700,
-      modal: true,
+      height: 600,
+      width: 1000,
+      modal: false,
       buttons: {
         "Guardar cambios": createInm,
         Cancelar: function() {

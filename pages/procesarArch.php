@@ -95,11 +95,11 @@
         	$nparros = mysqli_num_rows($parros);
 			echo	"<div class='panel panel-primary'>
 						<div class='panel-heading'><span style='font-weight:bold'>Codigo del Archiprestazgo:</span> ".$fila['cod_arch'];
-			/*if(1==1)//Tiene permiso para borrar un documento
+			if($_SESSION['rol']=='Administrador')//Tiene permiso para borrar un documento
 			{
 				echo
-					"<a class='del_inm' data-inm='".$fila['id_inm']."' href='#' style='margin-left:15px;'><img src='../papelera.jpg' width='24px' height='24px' alt='Eliminar Inmueble'></a>";
-			}*/
+					"<a class='del_arch' data-arch='".$fila['id_arch']."' href='#' style='margin-left:15px;'><img src='../papelera.jpg' width='24px' height='24px' alt='Eliminar Archiprestazgo'></a>";
+			}
 			if($_SESSION['rol']=='Administrador')//Tiene permiso para editar un documento
 			{
 				echo
@@ -195,4 +195,3 @@
                         </div>
                     </div>";
 	}
-?>

@@ -85,21 +85,21 @@
       return valid;
     }
 
-    dialogEditArch = $( "#dialog-edit-archiprestazgo" ).dialog({
-      autoOpen: false,
-      height: 500,
-      width: 700,
-      modal: true,
-      buttons: {
-        "Guardar cambios": updateArch,
-        Cancelar: function() {
-          dialogEditArch.dialog( "close" );
+    dialogEditArch = $("#dialog-edit-archiprestazgo").dialog({
+        autoOpen: false,
+        height: 500,
+        width: 700,
+        modal: true,
+        buttons: {
+            "Guardar cambios": updateArch,
+            Cancelar: function() {
+                dialogEditArch.dialog( "close" );
+            }
+        },
+        close: function() {
+            form[ 0 ].reset();
+            allFields.removeClass( "ui-state-error" );
         }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
     });
 
     form = dialogEditArch.find( "form" ).on( "submit", function( event ) {
@@ -107,7 +107,7 @@
       updateArch();
     });
 
-    $( "#mostrarArchiprestazgos" ).on( "click", ".edit_arch", function(event) {
+    $("#mostrarArchiprestazgos").on("click", ".edit_arch", function(event) {
 	  event.preventDefault();
 
 	  $.getJSON("enviarDatosDeArch.php?id_arch="+$(this).data('arch'), function(data){
