@@ -13,9 +13,23 @@
 	  tipo_inm	= $("#tipo_inm"),
 	  linderos	= $("#linderos"),
 	  descripcion	= $("#descripcion"),
+      fechaPicker = $("#fechaPickerDoc"),
+      datos_registro_doc = $("#datos_registro_doc"),
+      abogado_redactor_doc = $("#abogado_redactor_doc"),
 
-      allFields = $( [] ).add( id_inm ).add( archiprestazgo ).add( parroquia ).add( direccion ).add( modo_adq ).add( metraje ).add( tipo_inm ).add( linderos ).add( descripcion ),
-      tips = $( ".validateTips" );
+      allFields = $([]).add(id_inm)
+                        .add(archiprestazgo)
+                        .add(parroquia)
+                        .add(direccion)
+                        .add(modo_adq)
+                        .add(metraje)
+                        .add(tipo_inm)
+                        .add(linderos)
+                        .add(descripcion)
+                        .add(fechaPicker)
+                        .add(datos_registro_doc)
+                        .add(abogado_redactor_doc),
+      tips = $(".validateTips");
 
     function updateTips( t ) {
       tips
@@ -96,46 +110,45 @@
 	}
 
     function createInm() {
-		var valid = true;
-		allFields.removeClass( "ui-state-error" );
-		valid = valid && checkLength(cod_inm, "Codigo", 1, 11);
-		valid = valid && checkPropietario();
-		valid = valid && checkLength( modo_adq, "Modo de Adquisicion", 1, 50 );
-		valid = valid && checkLength( metraje, "Metraje", 1, 20 );
-		valid = valid && checkLength( tipo_inm, "Tipo de Inmueble", 1, 50 );
+        var valid = true;
+        allFields.removeClass("ui-state-error");
+        valid = valid && checkLength(cod_inm, "Codigo", 1, 11);
+        valid = valid && checkPropietario();
+        valid = valid && checkLength(modo_adq, "Modo de Adquisicion", 1, 50);
+        valid = valid && checkLength(metraje, "Metraje", 1, 20);
+        valid = valid && checkLength(tipo_inm, "Tipo de Inmueble", 1, 50);
 
-      if ( valid ) {
+        if (valid) {
+            $.get("guardarInm.php?" + $("#form_inm_new").serialize(), function() {
+                $("#mostrarInmuebles").empty();
+                $("#mostrarInmuebles").load("procesarInm.php");
+            });
 
-		$.get("guardarInm.php?"+$("#form_inm_new").serialize(), function(){
-			$("#mostrarInmuebles").empty();
-			$("#mostrarInmuebles").load("procesarInm.php");
-		});
-
-        dialogNewInm.dialog( "close" );
-      }
-      return valid;
+            dialogNewInm.dialog("close");
+        }
+        return valid;
     }
 
-    dialogNewInm = $( "#dialog-new-inmueble" ).dialog({
-      autoOpen: false,
-      height: 600,
-      width: 1000,
-      modal: false,
-      buttons: {
-        "Guardar cambios": createInm,
-        Cancelar: function() {
-          dialogNewInm.dialog("close");
+    dialogNewInm = $("#dialog-new-inmueble").dialog({
+        autoOpen: false,
+        height: 600,
+        width: 1000,
+        modal: false,
+        buttons: {
+            "Guardar cambios": createInm,
+            Cancelar: function() {
+                dialogNewInm.dialog("close");
+            }
+        },
+        close: function() {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
         }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
     });
 
     form = dialogNewInm.find( "form" ).on( "submit", function( event ) {
-      event.preventDefault();
-      createInm();
+        event.preventDefault();
+        createInm();
     });
 
     $("#create-inm").button().on( "click", function(event) {

@@ -48,10 +48,11 @@
 
 
 	} else {
-		$consulta_base = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, ".
+		$consulta_base = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
 						 "(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
 						 "(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro ".
 						 " from inmueble";
+
 		$where = "";
 
 		//comprueba si ya se ha enviado el formulario
@@ -146,10 +147,10 @@
 			if($_SESSION['rol']=='Administrador')//Tiene permiso para editar un documento
 			{
 				echo
-					"<div style='float:right; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='new-doc-to-inm' href='#'><img src='../document_new.png' width='48px' height='51px' alt='Crear nuevo Documento'></a></div>";
+					"<!--<div style='float:right; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='new-doc-to-inm' href='#'><img src='../document_new.png' width='48px' height='51px' alt='Crear nuevo Documento'></a></div>-->";
 			}
 
-			echo		"<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='ver_docs' href='#'><img src='../documents2.png' width='48px' height='51px' alt='Ver Documentos'></a></div>
+			echo		"<!--<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='ver_docs' href='#'><img src='../documents2.png' width='48px' height='51px' alt='Ver Documentos'></a></div>-->
 						</div>
 						<!-- /.panel-heading -->
 						<div class='panel-body'>
@@ -164,6 +165,11 @@
 									<p><span style='font-weight:bold'>Metraje:</span> ".$fila['metraje']."</p>
 									<p><span style='font-weight:bold'>Linderos:</span> ".$fila['linderos']."</p>
 									<p><span style='font-weight:bold'>Descripcion:</span> ".$fila['descripcion']."</p>
+									<hr/>
+									<h4>Informacion del documento</h4>
+									<p><span style='font-weight:bold'>Fecha:</span> ".$fila['fecha']."</p>
+									<p><span style='font-weight:bold'>Datos de Registro:</span> ".$fila['datos_registro']."</p>
+									<p><span style='font-weight:bold'>Abogado Redactor:</span> ".$fila['abogado_redactor']."</p>
 								</div>
 							</div>
 						</div>

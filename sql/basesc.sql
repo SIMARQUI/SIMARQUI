@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `documento` (
   `id_doc` int(11) NOT NULL AUTO_INCREMENT,
   `cod_doc` varchar(11) NOT NULL,
   `tipo` int(11) NOT NULL,
-  `datos_registro` varchar(100) NOT NULL,
+  `datos_registro` text NOT NULL,
   `abogado_redactor` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `activo` tinyint(1) NOT NULL DEFAULT '1',
@@ -94,6 +94,9 @@ CREATE TABLE IF NOT EXISTS `inmueble` (
   `tipo_inm` varchar(50) NOT NULL,
   `fecha_add_inm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `linderos` text NOT NULL,
+  `fecha` date NOT NULL,
+  `datos_registro` text NOT NULL,
+  `abogado_redactor` varchar(100) NOT NULL,
   PRIMARY KEY (`id_inm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

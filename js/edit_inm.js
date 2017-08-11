@@ -11,9 +11,23 @@
 	  tipo_inm_edit	= $("#tipo_inm_edit"),
 	  linderos_edit	= $("#linderos_edit"),
 	  descripcion_edit	= $("#descripcion_edit"),
+      fechaPickerDocEdit = $("#fechaPickerDocEdit"),
+      datos_registro_doc_edit = $("#datos_registro_doc_edit"),
+      abogado_redactor_doc_edit = $("#abogado_redactor_doc_edit"),
 
-      allFields = $( [] ).add( archiprestazgo_edit ).add( parroquia_edit ).add( direccion_edit ).add( modo_adq_edit ).add( metraje_edit ).add( tipo_inm_edit ).add( linderos_edit ).add( descripcion_edit ),
-      tips = $( ".validateTips" );
+      allFields = $([]).add(archiprestazgo_edit)
+                        .add(parroquia_edit)
+                        .add(direccion_edit)
+                        .add(modo_adq_edit)
+                        .add(metraje_edit)
+                        .add(tipo_inm_edit)
+                        .add(linderos_edit)
+                        .add(descripcion_edit)
+                        .add(fechaPickerDocEdit)
+                        .add(datos_registro_doc_edit)
+                        .add(abogado_redactor_doc_edit),
+
+      tips = $(".validateTips");
 
     function updateTips( t ) {
       tips
@@ -63,37 +77,37 @@
 	}
 
     function updateInm() {
-      var valid = true;
-      allFields.removeClass( "ui-state-error" );
-		valid = valid && checkPropietario();
-		valid = valid && checkLength( direccion_edit, "Direccion", 1, 200 );
-		valid = valid && checkLength( modo_adq_edit, "Modo de Adquisicion", 1, 50 );
-		valid = valid && checkLength( metraje_edit, "Metraje", 1, 20 );
-		valid = valid && checkLength( tipo_inm_edit, "Tipo de Inmueble", 1, 50 );
-		valid = valid && checkLength( linderos_edit, "Linderos", 1, 200 );
-		valid = valid && checkLength( descripcion_edit, "Descripcion", 1, 200 );
+        var valid = true;
+        allFields.removeClass("ui-state-error");
+        valid = valid && checkPropietario();
+        valid = valid && checkLength(direccion_edit, "Direccion", 1, 200);
+        valid = valid && checkLength(modo_adq_edit, "Modo de Adquisicion", 1, 50);
+        valid = valid && checkLength(metraje_edit, "Metraje", 1, 20);
+        valid = valid && checkLength(tipo_inm_edit, "Tipo de Inmueble", 1, 50);
+        valid = valid && checkLength(linderos_edit, "Linderos", 1, 200);
+        valid = valid && checkLength(descripcion_edit, "Descripcion", 1, 200);
 
-      if ( valid ) {
-        //hacemos la petición ajax
-		var enlace = "actualizarInm.php?"+$("#form_inm_edit").serialize();
-        $.ajax({
-            url: enlace,
-            success: function(data){
-				$("#mostrarInmuebles").empty();
-				$("#mostrarInmuebles").load("procesarInm.php?edit_inm=1");
-            },
-            //si ha ocurrido un error
-            error: function(){
-                //message = $("<span class='error'>Ha ocurrido un error.</span>");
-                //showMessage(message);
-				alert('Ocurrio un error');
-            }
-        });
-		//FIN ADD
+        if (valid) {
+            //hacemos la petición ajax
+            var enlace = "actualizarInm.php?" + $("#form_inm_edit").serialize();
+            $.ajax({
+                url: enlace,
+                success: function(data) {
+                    $("#mostrarInmuebles").empty();
+                    $("#mostrarInmuebles").load("procesarInm.php?edit_inm=1");
+                },
+                //si ha ocurrido un error
+                error: function() {
+                    //message = $("<span class='error'>Ha ocurrido un error.</span>");
+                    //showMessage(message);
+                    alert('Ocurrio un error');
+                }
+            });
+            //FIN ADD
 
-        dialogEditInm.dialog( "close" );
-      }
-      return valid;
+            dialogEditInm.dialog("close");
+        }
+        return valid;
     }
 
     dialogEditInm = $("#dialog-edit-inmueble").dialog({
@@ -102,9 +116,9 @@
         width: 1000,
         modal: false,
         buttons: {
-        "Guardar cambios": updateInm,
-        Cancelar: function() {
-            dialogEditInm.dialog("close");
+            "Guardar cambios": updateInm,
+            Cancelar: function() {
+                dialogEditInm.dialog("close");
             }
         },
         close: function() {
@@ -134,6 +148,10 @@
             $("#tipo_inm_edit").val(data.tipo_inm);
             $("#linderos_edit").val(data.linderos);
             $("#descripcion_edit").val(data.descripcion);
+            $("#fechaDocEdit").val(data.fecha);
+            $("#fecha_doc_edit").val(data.fecha);
+            $("#datos_registro_doc_edit").val(data.datos_registro);
+            $("#abogado_redactor_doc_edit").val(data.abogado_redactor);
         });
 
         dialogEditInm.dialog( "open" );

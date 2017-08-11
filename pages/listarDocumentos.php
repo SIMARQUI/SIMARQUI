@@ -53,14 +53,14 @@
 			}
 
 			if($_SESSION['rol']=='Administrador'){//Tiene permiso para agregarle inmuebles
-				echo "<div style='float:right; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='new-inm-to-doc' href='#'><img src='../inm_add.png' width='48px' height='51px' alt='Crear nuevo Inmueble'></a></div>";
+				echo "<!--<div style='float:right; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='new-inm-to-doc' href='#'><img src='../inm_add.png' width='48px' height='51px' alt='Crear nuevo Inmueble'></a></div>-->";
 			}
 
 			$tipos = mysqli_query($conexion, "select nombre from tipo_documento where id = " . $fila['tipo']) or die(mysqli_error($conexion));
 			$tipo = mysqli_fetch_assoc($tipos);
 			$fila['tipo'] = $tipo['nombre'];
 
-			echo		"<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='ver_inms' href='#'><img src='../inm-list.jpg' width='48px' height='51px' alt='Ver Inmuebles'></a></div>
+			echo		"<!--<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='ver_inms' href='#'><img src='../inm-list.jpg' width='48px' height='51px' alt='Ver Inmuebles'></a></div>-->
 						</div>
 						<!-- /.panel-heading -->
 						<div class='panel-body'>

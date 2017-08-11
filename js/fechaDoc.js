@@ -63,4 +63,22 @@ $(function(){
 	  	altField: "#fecha_edit_hidden",
 	  	altFormat: "yy-mm-dd"
     });
+
+	$("#fechaDoc").datepicker({
+  		changeMonth: true,
+      	changeYear: true,
+	  	yearRange: "1900:-c+00",
+	  	maxDate: "+0m +0d",
+	  	altField: "#fecha_doc",
+	  	altFormat: "yy-mm-dd"
+    });
+
+	$("#fechaDocEdit").datepicker({
+  		changeMonth: true,
+      	changeYear: true,
+	  	yearRange: "1900:-c+00",
+	  	maxDate: "+0m +0d",
+	  	altField: "#fecha_doc_edit",
+	  	altFormat: "yy-mm-dd"
+    });
 });

@@ -12,7 +12,7 @@ include('../librerias/conexion.php');
 
 $_SESSION['ultima_consulta'] = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
 $_SESSION['ultima_pagina'] = 1;
-$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, ".
+$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
 										"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
 										"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro ".
 										"from inmueble order by fecha_add_inm DESC";
@@ -199,7 +199,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 
 			<div class="form-group">
 				<label>Datos de Registro</label>
-				<input id="datos_registro" name="datos_registro" class="form-control" placeholder="Datos de Registro">
+				<textarea id="datos_registro" name="datos_registro" class="form-control" placeholder="Datos de Registro" rows="2"></textarea>
 			</div>
 
 			<div class="form-group">
@@ -240,7 +240,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 
 			<div class="form-group">
 				<label>Datos de Registro</label>
-				<input id="datos_registro_edit" name="datos_registro" class="form-control" placeholder="Datos de Registro">
+				<textarea id="datos_registro_edit" name="datos_registro" class="form-control" placeholder="Datos de Registro" rows="2"></textarea>
 			</div>
 
 			<div class="form-group">
@@ -339,6 +339,26 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<label>Descripcion</label>
 				<textarea id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
 			</div>
+
+			<hr/>
+			<!-- Informacion del documento -->
+			<h4>Informacion del documento</h4>
+			<div class="form-group">
+				<label>Fecha</label>
+				<input type="text" id="fechaDoc" name="fechaDoc" readonly="readonly" placeholder="Fecha" class="form-control">
+				<input type="hidden" id="fecha_doc" name="fecha">
+			</div>
+
+			<div class="form-group">
+				<label>Datos de Registro</label>
+				<textarea id="datos_registro_doc" name="datos_registro_doc" class="form-control" placeholder="Datos de Registro" rows="2"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label>Abogado Redactor</label>
+				<input id="abogado_redactor_doc" name="abogado_redactor_doc" class="form-control" placeholder="Abogado Redactor">
+			</div>
+
 		</form>
 	</div>
 
@@ -392,6 +412,26 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<label>Descripcion</label>
 				<textarea id="descripcion_edit" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
 			</div>
+
+			<hr/>
+			<!-- Informacion del documento -->
+			<h4>Informacion del documento</h4>
+			<div class="form-group">
+				<label>Fecha</label>
+				<input type="text" id="fechaDocEdit" name="fechaDocEdit" readonly="readonly" placeholder="Fecha" class="form-control">
+				<input type="hidden" id="fecha_doc_edit" name="fecha">
+			</div>
+
+			<div class="form-group">
+				<label>Datos de Registro</label>
+				<textarea id="datos_registro_doc_edit" name="datos_registro_doc" class="form-control" placeholder="Datos de Registro" rows="2"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label>Abogado Redactor</label>
+				<input id="abogado_redactor_doc_edit" name="abogado_redactor_doc" class="form-control" placeholder="Abogado Redactor">
+			</div>
+
 		</form>
 	</div>
 	<div id="show-docs-from-inm-modal" title="Documentos de inmueble">

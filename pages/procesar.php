@@ -210,7 +210,7 @@
         while($fila = mysqli_fetch_array($registros))
         {
 			echo	"<div class='panel panel-primary'>
-						<div class='panel-heading'><span style='font-weight:bold'>Codigo del documento: asdf asdfasdf</span> ".$fila['cod_doc'];
+						<div class='panel-heading'><span style='font-weight:bold'>Codigo del documento: </span> ".$fila['cod_doc'];
 			if($_SESSION['rol']=='Administrador')//Tiene permiso para borrar un documento
 			{
 				echo
@@ -222,14 +222,14 @@
 					"<a class='edit_doc' data-doc='".$fila['id_doc']."' href='#' style='margin-left:5px;'><img src='../icon-edit.png' width='24px' height='24px' alt='Editar Documento'></a>";
 			}
 			if($_SESSION['rol']=='Administrador') {
-				echo "<div style='float:right; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='new-inm-to-doc' href='#'><img src='../inm_add.png' width='48px' height='51px' alt='Crear nuevo Inmueble'></a></div>";
+				echo "<!--<div style='float:right; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='new-inm-to-doc' href='#'><img src='../inm_add.png' width='48px' height='51px' alt='Crear nuevo Inmueble'></a></div>-->";
 			}
 
 			$tipos = mysqli_query($conexion, "select nombre from tipo_documento where id = " . $fila['tipo']) or die(mysqli_error($conexion));
 			$tipo = mysqli_fetch_assoc($tipos);
 			$fila['tipo'] = $tipo['nombre'];
 
-			echo		"<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='ver_inms' href='#'><img src='../inm-list.jpg' width='48px' height='51px' alt='Ver Inmuebles'></a></div>
+			echo		"<!--<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='ver_inms' href='#'><img src='../inm-list.jpg' width='48px' height='51px' alt='Ver Inmuebles'></a></div>-->
 						</div>
 						<!-- /.panel-heading -->
 						<div class='panel-body'>
