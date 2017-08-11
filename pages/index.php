@@ -211,7 +211,6 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<label>Documento</label>
 				<input type="file" id="archivo_doc" name="archivo_doc">
 			</div>
-			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
 
@@ -228,15 +227,13 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<label>Tipo</label>
 				<select id="tipo_edit" name="tipo" class="form-control" >
 					<option value="ningun" size="10">Seleccionar...</option>
-					<?php
-						obtTiposDocs();
-					?>
+					<?php obtTiposDocs(); ?>
 				</select>
 			</div>
 
 			<div class="form-group">
 				<label>Fecha</label>
-				<input type="text" id="fecha_edit" name="fechaPicker" class="form-control">
+				<input type="text" id="fecha_edit" name="fechaPicker" readonly="readonly" placeholder="Fecha" class="form-control">
 				<input type="hidden" id="fecha_edit_hidden" name="fecha">
 			</div>
 			<!-- / fecha -->
@@ -255,7 +252,6 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<label>Documento</label>
 				<input type="file" id="archivo_doc_edit" name="archivo_doc">
 			</div>-->
-			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
 	<div id="show-inms-from-doc-modal" title="Inmuebles de documento">
@@ -337,13 +333,12 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			</div>
 			<div class="form-group">
 				<label>Linderos</label>
-				<textarea id="linderos" name="linderos" class="form-control" placeholder="linderos" rows="4"></textarea>
+				<textarea id="linderos" name="linderos" class="form-control" placeholder="Linderos" rows="4"></textarea>
 			</div>
 			<div class="form-group">
 				<label>Descripcion</label>
 				<textarea id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
 			</div>
-			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
 
@@ -375,7 +370,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<!-- / ubiacion -->
 			<div class="form-group">
 				<label>Direccion</label>
-				<input id="direccion_edit" name="direccion" class="form-control">
+				<textarea id="direccion_edit" name="direccion" placeholder="Direccion" class="form-control" rows="4"></textarea>
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
@@ -391,13 +386,12 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			</div>
 			<div class="form-group">
 				<label>Linderos</label>
-				<textarea id="linderos_edit" name="linderos" class="form-control" rows="3"></textarea>
+				<textarea id="linderos_edit" name="linderos" class="form-control" placeholder="Linderos" rows="4"></textarea>
 			</div>
 			<div class="form-group">
 				<label>Descripcion</label>
-				<textarea id="descripcion_edit" name="descripcion" class="form-control" rows="3"></textarea>
+				<textarea id="descripcion_edit" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
 			</div>
-			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>
 	</div>
 	<div id="show-docs-from-inm-modal" title="Documentos de inmueble">

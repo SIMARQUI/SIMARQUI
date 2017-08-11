@@ -96,21 +96,21 @@
       return valid;
     }
 
-    dialogEditInm = $( "#dialog-edit-inmueble" ).dialog({
-      autoOpen: false,
-      height: 500,
-      width: 700,
-      modal: true,
-      buttons: {
+    dialogEditInm = $("#dialog-edit-inmueble").dialog({
+        autoOpen: false,
+        height: 600,
+        width: 1000,
+        modal: false,
+        buttons: {
         "Guardar cambios": updateInm,
         Cancelar: function() {
-          dialogEditInm.dialog( "close" );
+            dialogEditInm.dialog("close");
+            }
+        },
+        close: function() {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
         }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
     });
 
     form = dialogEditInm.find( "form" ).on( "submit", function( event ) {

@@ -142,21 +142,21 @@
       return valid;
     }
 
-    dialogNewDoc = $( "#dialog-new-document" ).dialog({
-      autoOpen: false,
-      height: 600,
-      width: 1000,
-      modal: true,
-      buttons: {
-        "Guardar cambios": createDoc,
-        Cancelar: function() {
-          dialogNewDoc.dialog( "close" );
+    dialogNewDoc = $("#dialog-new-document").dialog({
+        autoOpen: false,
+        height: 600,
+        width: 1000,
+        modal: true,
+        buttons: {
+            "Guardar cambios": createDoc,
+            Cancelar: function() {
+                dialogNewDoc.dialog("close");
+            }
+        },
+        close: function() {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
         }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
     });
 
     form = dialogNewDoc.find( "form" ).on( "submit", function( event ) {

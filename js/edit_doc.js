@@ -108,21 +108,21 @@
       return valid;
     }
 
-    dialogEditDoc = $( "#dialog-edit-document" ).dialog({
-      autoOpen: false,
-      height: 500,
-      width: 700,
-      modal: true,
-      buttons: {
-        "Guardar cambios": updateDoc,
-        Cancelar: function() {
-          dialogEditDoc.dialog( "close" );
+    dialogEditDoc = $("#dialog-edit-document").dialog({
+        autoOpen: false,
+        height: 600,
+        width: 1000,
+        modal: true,
+        buttons: {
+            "Guardar cambios": updateDoc,
+            Cancelar: function() {
+                dialogEditDoc.dialog("close");
+            }
+        },
+        close: function() {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
         }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
     });
 
     form = dialogEditDoc.find( "form" ).on( "submit", function( event ) {
