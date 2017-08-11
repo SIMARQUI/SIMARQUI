@@ -87,13 +87,13 @@ CREATE TABLE IF NOT EXISTS `fundacion` (
 CREATE TABLE IF NOT EXISTS `inmueble` (
   `id_inm` int(11) NOT NULL AUTO_INCREMENT,
   `cod_inm` varchar(11) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
+  `descripcion` text NOT NULL,
   `modo_adq` varchar(50) NOT NULL,
-  `direccion` varchar(200) NOT NULL,
+  `direccion` text NOT NULL,
   `metraje` varchar(20) NOT NULL,
   `tipo_inm` varchar(50) NOT NULL,
   `fecha_add_inm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `linderos` varchar(200) NOT NULL,
+  `linderos` text NOT NULL,
   PRIMARY KEY (`id_inm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -321,7 +321,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<!-- / ubiacion -->
 			<div class="form-group">
 				<label>Direccion</label>
-				<input id="direccion" name="direccion" placeholder="Direccion" class="form-control">
+				<textarea id="direccion" name="direccion" placeholder="Direccion" class="form-control" rows="4"></textarea>
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
@@ -337,11 +337,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			</div>
 			<div class="form-group">
 				<label>Linderos</label>
-				<textarea id="linderos" name="linderos" class="form-control" rows="3"></textarea>
+				<textarea id="linderos" name="linderos" class="form-control" placeholder="linderos" rows="4"></textarea>
 			</div>
 			<div class="form-group">
 				<label>Descripcion</label>
-				<textarea id="descripcion" name="descripcion" class="form-control" rows="3"></textarea>
+				<textarea id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
 			</div>
 			<button type="reset" class="btn btn-default">Borrar</button>
 		</form>

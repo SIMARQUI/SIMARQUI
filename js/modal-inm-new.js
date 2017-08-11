@@ -100,12 +100,9 @@
 		allFields.removeClass( "ui-state-error" );
 		valid = valid && checkLength(cod_inm, "Codigo", 1, 11);
 		valid = valid && checkPropietario();
-		valid = valid && checkLength( direccion, "Direccion", 1, 200 );
 		valid = valid && checkLength( modo_adq, "Modo de Adquisicion", 1, 50 );
 		valid = valid && checkLength( metraje, "Metraje", 1, 20 );
 		valid = valid && checkLength( tipo_inm, "Tipo de Inmueble", 1, 50 );
-		valid = valid && checkLength( linderos, "Linderos", 1, 200 );
-		valid = valid && checkLength( descripcion, "Descripcion", 1, 200 );
 
       if ( valid ) {
 
