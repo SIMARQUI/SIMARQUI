@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `documento` (
   `cod_doc` varchar(11) NOT NULL,
   `tipo` int(11) NOT NULL,
   `datos_registro` text NOT NULL,
-  `abogado_redactor` varchar(100) NOT NULL,
+  `abogado_redactor` text NOT NULL,
   `fecha` date NOT NULL,
   `activo` tinyint(1) NOT NULL DEFAULT '1',
   `fecha_add_doc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `inmueble` (
   `linderos` text NOT NULL,
   `fecha` date NOT NULL,
   `datos_registro` text NOT NULL,
-  `abogado_redactor` varchar(100) NOT NULL,
+  `abogado_redactor` text NOT NULL,
   PRIMARY KEY (`id_inm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -187,6 +187,7 @@ INSERT INTO `parroquia` (`id_parro`, `nom_parro`, `cod_parro`, `id_archif`) VALU
 (20, "San Jose", "01", 2),
 (21, "Santa Eduviguis", "11", 2),
 (22, "Santa Marta", "12", 2),
+(69, "San Cayetano", "13", 2),
 --  Valencia Sur - Este id_archif = 3 cod_arch = 4
 (23, "Espiritu Santo", "01", 3),
 (24, "Jesús de Nazareth", "02", 3),

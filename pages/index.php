@@ -12,9 +12,10 @@ include('../librerias/conexion.php');
 
 $_SESSION['ultima_consulta'] = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
 $_SESSION['ultima_pagina'] = 1;
-$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
+$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
 										"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
-										"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro ".
+										"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro, ".
+										"(select nombre from tipo_documento as tipo where tipo.id = id_adq) as modo_adq ".
 										"from inmueble order by fecha_add_inm DESC";
 $_SESSION['ultima_pagina_inmueble'] = 1;
 ?>
@@ -321,7 +322,10 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
-				<input id="modo_adq" name="modo_adq" class="form-control" placeholder="Modo de Adquisicion">
+				<select id="modo_adq" name="modo_adq" class="form-control" >
+					<option value="ningun" size="10">Seleccionar...</option>
+					<?php obtTiposDocs(false); ?>
+				</select>
 			</div>
 			<div class="form-group">
 				<label>Metraje</label>
@@ -394,7 +398,10 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
-				<input id="modo_adq_edit" name="modo_adq" class="form-control" placeholder="Modo de Adquisicion">
+				<select id="modo_adq_edit" name="modo_adq" class="form-control" >
+					<option value="ningun" size="10">Seleccionar...</option>
+					<?php obtTiposDocs(false); ?>
+				</select>
 			</div>
 			<div class="form-group">
 				<label>Metraje</label>

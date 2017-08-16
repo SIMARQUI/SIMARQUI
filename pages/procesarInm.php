@@ -48,9 +48,10 @@
 
 
 	} else {
-		$consulta_base = "select id_inm, cod_inm, descripcion, modo_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
+		$consulta_base = "select id_inm, cod_inm, modo_adq as id_adq, descripcion, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
 						 "(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
-						 "(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro ".
+						 "(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro, ".
+						 "(select nombre from tipo_documento as tipo where tipo.id = id_adq) as modo_adq ".
 						 " from inmueble";
 
 		$where = "";

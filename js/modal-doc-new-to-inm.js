@@ -1,6 +1,6 @@
   $(function() {
     var dialog, form, id_inm,
- 
+
       // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
       emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
       cod_doc = $( "#cod_doc" ),
@@ -10,10 +10,10 @@
 	  anyo	= $("#anyo"),
 	  dat_reg	= $("#dat_reg"),
 	  abog_redc	= $("#abog_redc"),
-	  
+
       allFields = $( [] ).add( cod_doc ).add( tipo ).add( dia ).add( mes ).add( anyo ).add( dat_reg ).add( abog_redc ),
       tips = $( ".validateTips" );
- 
+
     function updateTips( t ) {
       tips
         .text( t )
@@ -22,7 +22,7 @@
         tips.removeClass( "ui-state-highlight", 1500 );
       }, 500 );
     }
- 
+
     function checkLength( o, n, min, max ) {
       if ( o.val().length > max || o.val().length < min ) {
         o.addClass( "ui-state-error" );
@@ -33,7 +33,7 @@
         return true;
       }
     }
- 
+
     function checkRegexp( o, regexp, n ) {
       if ( !( regexp.test( o.val() ) ) ) {
         o.addClass( "ui-state-error" );
@@ -43,15 +43,15 @@
         return true;
       }
     }
- 
+
     function addUser() {
       var valid = true;
       allFields.removeClass( "ui-state-error" );
- 
+
       valid = valid && checkLength( cod_doc, "Codigo del documento", 3, 16 );
       valid = valid && checkLength( tipo, "Tipo", 6, 80 );
-      valid = valid && checkLength( dat_reg, "Datos de Registro", 5, 16 );
-      valid = valid && checkLength( abog_redc, "Abogado Redactor", 5, 16 );
+      valid = valid && checkLength( dat_reg, "Datos de Registro", 5, 300);
+      valid = valid && checkLength( abog_redc, "Abogado Redactor", 5, 300);
 
       /*valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
       valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
@@ -62,16 +62,16 @@
 			$("#lista").empty();
 			$("#lista").load("listaInmuebles.php");
 		});*/
-		
+
 		//ADD
 		//información del formulario
         //var formData = new FormData($("#dialog-form-document"));
 		var formData = new FormData(document.getElementById("form_doc"));
 		formData.append("id_inm", id_inm);
-		
-        //hacemos la petición ajax  
+
+        //hacemos la petición ajax
         $.ajax({
-            url: 'guardarDoc.php',  
+            url: 'guardarDoc.php',
             type: 'POST',
             // Form data
             //datos del formulario
@@ -83,7 +83,7 @@
             //mientras enviamos el archivo
             /*beforeSend: function(){
                 //message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
-                //showMessage(message)        
+                //showMessage(message)
             },*/
             //una vez finalizado correctamente
             success: function(data){
@@ -103,12 +103,12 @@
             }*/
         });
 		//FIN ADD
-		
+
         dialog.dialog( "close" );
       }
       return valid;
     }
- 
+
     dialog = $( "#dialog-form-document" ).dialog({
       autoOpen: false,
       height: 500,
@@ -125,12 +125,12 @@
         allFields.removeClass( "ui-state-error" );
       }
     });
- 
+
     form = dialog.find( "form" ).on( "submit", function( event ) {
       event.preventDefault();
       addUser();
     });
-	
+
     $( "a[name='new_doc']" ).on( "click", function(event) {
 	  event.preventDefault();
 	  id_inm = $(this).data('inm');

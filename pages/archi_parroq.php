@@ -164,8 +164,9 @@
 		<p class="validateTips">Todos los campos son requeridos.</p>
 		<form role="form" id="form_arch_new">
 			<div class="form-group">
-				<p><label>Codigo</label></p>
-				<input id="cod_arch" name="cod_arch" class="form-control" maxlength="2" placeholder="Codigo">
+				<label>Codigo</label>
+				<p class="form-control-static" id="cod_arch_show">-</p>
+				<input id="cod_arch" name="cod_arch" type="hidden">
 			</div>
 			<div class="form-group">
 				<p><label>Nombre</label></p>
@@ -180,8 +181,8 @@
 		<form role="form" id="form_arch_edit">
 			<div class="form-group">
 				<label>Codigo</label>
-				<span id='cod_arch_edit'></span>
-				<input type="hidden" name="id_arch" id="id_arch_hidden">
+				<p class="form-control-static" id="cod_arch_edit">-</p>
+				<input id="id_arch_hidden" name="id_arch" type="hidden">
 			</div>
 			<div class="form-group">
 				<label>Nombre</label>
@@ -196,7 +197,8 @@
 		<form role="form" id="form_parro">
 			<div class="form-group">
 				<label>Codigo</label>
-				<input id="cod_parro" maxlength="5" name="cod_parro" class="form-control" placeholder="Codigo">
+				<p class="form-control-static" id="cod_parro_show">-</p>
+				<input id="cod_parro" name="cod_parro" type="hidden">
 			</div>
 			<div class="form-group">
 				<label>Nombre</label>

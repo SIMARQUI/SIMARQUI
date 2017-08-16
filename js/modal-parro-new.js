@@ -75,9 +75,16 @@
       addUser();
     });
 
-	$("#mostrarArchiprestazgos").on( "click", ".new_parro", function(event) {
-	  event.preventDefault();
-	  id_arch = $(this).data('arch');
-      dialog.dialog( "open" );
+	$("#mostrarArchiprestazgos").on("click", ".new_parro", function(event) {
+        event.preventDefault();
+        id_arch = $(this).data('arch');
+
+        $.get("next_code_parroq.php?archiprestazgo=" + id_arch, function(data) {
+            $("#cod_parro_show").html(data);
+            $("#cod_parro").val(data);
+        });
+
+        dialog.dialog("open");
     });
+
   });

@@ -65,8 +65,8 @@
 
       valid = valid && checkTipo(tipo_edit);
 	  valid = valid && checkFecha( fecha_edit );
-      valid = valid && checkLength( datos_registro_edit, "Datos de Registro", 1, 30 );
-      valid = valid && checkLength( abogado_redactor_edit, "Abogado Redactor", 1, 30 );
+      valid = valid && checkLength( datos_registro_edit, "Datos de Registro", 1, 300);
+      valid = valid && checkLength( abogado_redactor_edit, "Abogado Redactor", 1, 300);
 
       if ( valid ) {
 

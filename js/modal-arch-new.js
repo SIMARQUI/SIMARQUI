@@ -81,6 +81,11 @@
     $("#create-arch").button().on("click", function(event) {
         event.preventDefault();
 
+        $.get("next_code_archi.php", function(data) {
+            $("#cod_arch_show").html(data);
+            $("#cod_arch").val(data);
+        });
+
         dialogNewArch.dialog("open");
     });
 
