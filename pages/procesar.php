@@ -52,7 +52,7 @@
 	else
 	{
 		$esBusqueda = true;
-		$consulta_base = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento";
+		$consulta_base = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor, descripcion from documento";
 		$entro_inm = false;
 		$where = "";
 
@@ -239,6 +239,7 @@
 									<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo']."</p>
 									<p><span style='font-weight:bold'>Datos de registro:</span> ".$fila['datos_registro']."</p>
 									<p><span style='font-weight:bold'>Abogado redactor:</span> ".$fila['abogado_redactor']."</p>
+									<p><span style='font-weight:bold'>Descripción:</span> ".$fila['descripcion']."</p>
 								</div>
 								<button id='' data-doc='".$fila['id_doc']."' type='button' name='btnMas' class='btn btn-primary'>Ver PDF</button>
 							</div>

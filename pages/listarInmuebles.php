@@ -8,7 +8,7 @@
 	require_once('../librerias/utiles.php');
 
 	$conexion = conectar();
-	$consulta_ejecutar = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
+	$consulta_ejecutar = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, estatus, ".
 						 	"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
 							"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro, ".
 							"(select nombre from tipo_documento as tipo where tipo.id = id_adq) as modo_adq ".
@@ -73,6 +73,8 @@
 									<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo_inm']."</p>
 									<p><span style='font-weight:bold'>Modo de adquisicion:</span> ".$fila['modo_adq']."</p>
 									<p><span style='font-weight:bold'>Metraje:</span> ".$fila['metraje']."</p>
+									<p><span style='font-weight:bold'>Tipo de inmueble:</span> ".$fila['tipo_inm']."</p>
+									<p><span style='font-weight:bold'>Estatus:</span> " . (($fila['estatus'] == 1) ? 'Activo' : 'Desincorporado') . "</p>
 									<p><span style='font-weight:bold'>Linderos:</span> ".$fila['linderos']."</p>
 									<p><span style='font-weight:bold'>Descripcion:</span> ".$fila['descripcion']."</p>
 									<hr/>

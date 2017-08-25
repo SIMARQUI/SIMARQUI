@@ -10,9 +10,9 @@ include('../librerias/mensajes.php');
 include('../librerias/utiles.php');
 include('../librerias/conexion.php');
 
-$_SESSION['ultima_consulta'] = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
+$_SESSION['ultima_consulta'] = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor, descripcion from documento order by fecha_add_doc DESC";
 $_SESSION['ultima_pagina'] = 1;
-$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, ".
+$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, estatus, ".
 										"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
 										"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro, ".
 										"(select nombre from tipo_documento as tipo where tipo.id = id_adq) as modo_adq ".
@@ -207,6 +207,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<label>Abogado Redactor</label>
 				<input id="abogado_redactor" name="abogado_redactor" class="form-control" placeholder="Abogado Redactor">
 			</div>
+
+			<div class="form-group">
+				<label>Descripción</label>
+				<textarea id="descripcion" name="descripcion" class="form-control" placeholder="Descripción" rows="2"></textarea>
+			</div>
 			<!-- ADD -->
 			<div class="form-group">
 				<label>Documento</label>
@@ -247,6 +252,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<div class="form-group">
 				<label>Abogado Redactor</label>
 				<input id="abogado_redactor_edit" name="abogado_redactor" class="form-control" placeholder="Abogado Redactor">
+			</div>
+
+			<div class="form-group">
+				<label>Descripción</label>
+				<textarea id="descripcion_edit" name="descripcion" class="form-control" placeholder="Descripción" rows="2"></textarea>
 			</div>
 			<!-- ADD -->
 			<!--<div class="form-group">
@@ -336,6 +346,13 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<input id="tipo_inm" name="tipo_inm" class="form-control" placeholder="Tipo de Inmueble">
 			</div>
 			<div class="form-group">
+				<label>Estatus</label>
+				<select id="estatus" name="estatus" class="form-control">
+					<option value="1">Activo</option>
+					<option value="0">Desincorporado</option>
+				</select>
+			</div>
+			<div class="form-group">
 				<label>Linderos</label>
 				<textarea id="linderos" name="linderos" class="form-control" placeholder="Linderos" rows="4"></textarea>
 			</div>
@@ -410,6 +427,13 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<div class="form-group">
 				<label>Tipo de inmueble</label>
 				<input id="tipo_inm_edit" name="tipo_inm" class="form-control" placeholder="Tipo de Inmueble">
+			</div>
+			<div class="form-group">
+				<label>Estatus</label>
+				<select id="estatus_edit" name="estatus" class="form-control">
+					<option value="1">Activo</option>
+					<option value="0">Desincorporado</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label>Linderos</label>

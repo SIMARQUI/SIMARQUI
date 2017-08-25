@@ -9,8 +9,9 @@
 	  fechaPicker = $("#fechaPicker"),
 	  datos_registro	= $("#datos_registro"),
 	  abogado_redactor	= $("#abogado_redactor"),
+      descripcion	= $("#descripcion"),
 
-      allFields = $( [] ).add(id_doc).add( tipo ).add( fechaPicker ).add( datos_registro ).add( abogado_redactor ),
+      allFields = $( [] ).add(id_doc).add( tipo ).add( fechaPicker ).add( datos_registro ).add( abogado_redactor ).add(descripcion),
       tips = $( ".validateTips" );
 
     function updateTips( t ) {

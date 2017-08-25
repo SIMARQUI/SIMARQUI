@@ -14,6 +14,7 @@
       fechaPickerDocEdit = $("#fechaPickerDocEdit"),
       datos_registro_doc_edit = $("#datos_registro_doc_edit"),
       abogado_redactor_doc_edit = $("#abogado_redactor_doc_edit"),
+      estatus_edit = $("#estatus_edit"),
 
       allFields = $([]).add(archiprestazgo_edit)
                         .add(parroquia_edit)
@@ -25,7 +26,8 @@
                         .add(descripcion_edit)
                         .add(fechaPickerDocEdit)
                         .add(datos_registro_doc_edit)
-                        .add(abogado_redactor_doc_edit),
+                        .add(abogado_redactor_doc_edit)
+                        .add(estatus_edit),
 
       tips = $(".validateTips");
 
@@ -126,12 +128,12 @@
         }
     });
 
-    form = dialogEditInm.find( "form" ).on( "submit", function( event ) {
-      event.preventDefault();
-      updateInm();
+    form = dialogEditInm.find("form").on("submit", function(event) {
+        event.preventDefault();
+        updateInm();
     });
 
-    $( "#mostrarInmuebles" ).on( "click", ".edit_inm", function(event) {
+    $("#mostrarInmuebles").on("click", ".edit_inm", function(event) {
         event.preventDefault();
         tips.text('');
         $.getJSON("enviarDatosDeInm.php?id_inm="+$(this).data('inm'), function(data) {
@@ -151,9 +153,10 @@
             $("#fecha_doc_edit").val(data.fecha);
             $("#datos_registro_doc_edit").val(data.datos_registro);
             $("#abogado_redactor_doc_edit").val(data.abogado_redactor);
+            $("#estatus_edit").val(data.estatus);
         });
 
-        dialogEditInm.dialog( "open" );
+        dialogEditInm.dialog("open");
     });
 
 	function obtSelectParros(arch_val, parro){

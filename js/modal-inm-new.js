@@ -13,9 +13,10 @@
 	  tipo_inm	= $("#tipo_inm"),
 	  linderos	= $("#linderos"),
 	  descripcion	= $("#descripcion"),
-      fechaPicker = $("#fechaPickerDoc"),
+      fechaPicker = $("#fechaDoc"),
       datos_registro_doc = $("#datos_registro_doc"),
       abogado_redactor_doc = $("#abogado_redactor_doc"),
+      estatus = $("#estatus"),
 
       allFields = $([]).add(id_inm)
                         .add(archiprestazgo)
@@ -28,7 +29,8 @@
                         .add(descripcion)
                         .add(fechaPicker)
                         .add(datos_registro_doc)
-                        .add(abogado_redactor_doc),
+                        .add(abogado_redactor_doc)
+                        .add(estatus),
       tips = $(".validateTips");
 
     function updateTips( t ) {
@@ -117,6 +119,7 @@
         valid = valid && checkLength(modo_adq, "Modo de Adquisicion", 1, 50);
         valid = valid && checkLength(metraje, "Metraje", 1, 20);
         valid = valid && checkLength(tipo_inm, "Tipo de Inmueble", 1, 50);
+        valid = valid && checkLength(fechaPicker, "Fecha", 1, 50);
 
         if (valid) {
             $.get("guardarInm.php?" + $("#form_inm_new").serialize(), function() {

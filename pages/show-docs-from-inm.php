@@ -10,7 +10,7 @@
 	$conexion = conectar();
 
 	$id_inm = $_REQUEST['id_inm'];
-	$consulta = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento, se_refiere where (id_inmfff = '$id_inm') And (id_doc = id_docf)";
+	$consulta = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor, descripcion from documento, se_refiere where (id_inmfff = '$id_inm') And (id_doc = id_docf)";
 
 	$registros = mysqli_query($conexion, $consulta) or die('errorr');
 
@@ -35,6 +35,7 @@
 									<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo']."</p>
 									<p><span style='font-weight:bold'>Datos de registro:</span> ".$fila['datos_registro']."</p>
 									<p><span style='font-weight:bold'>Abogado redactor:</span> ".$fila['abogado_redactor']."</p>
+									<p><span style='font-weight:bold'>Descripción:</span> ".$fila['descripcion']."</p>
 								</div>
 							</div>
 						</div>

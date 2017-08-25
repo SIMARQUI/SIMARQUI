@@ -7,8 +7,9 @@
 	  fecha_edit = $( "#fecha_edit" ),
 	  datos_registro_edit	= $("#datos_registro_edit"),
 	  abogado_redactor_edit	= $("#abogado_redactor_edit"),
+      descripcion_edit	= $("#descripcion_edit"),
 
-      allFields = $( [] ).add( tipo_edit ).add( fecha_edit ).add( datos_registro_edit ).add( abogado_redactor_edit ),
+      allFields = $( [] ).add( tipo_edit ).add( fecha_edit ).add( datos_registro_edit ).add( abogado_redactor_edit ).add(descripcion_edit),
       tips = $( ".validateTips" );
 
     function updateTips( t ) {
@@ -150,6 +151,7 @@
 		  $("#fecha_edit_hidden").val(data.fecha);
 		  $("#datos_registro_edit").val(data.datos_registro);
 		  $("#abogado_redactor_edit").val(data.abogado_redactor);
+          $("#descripcion_edit").val(data.descripcion);
 	  });
 
       dialogEditDoc.dialog( "open" );

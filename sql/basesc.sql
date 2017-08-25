@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `documento` (
   PRIMARY KEY (`id_doc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE `documento` ADD `descripcion` TEXT NOT NULL AFTER `fecha_add_doc`;
 -- --------------------------------------------------------
 
 --
@@ -107,6 +108,10 @@ ALTER TABLE `inmueble`
     ADD INDEX (`parroquia`);
 
 ALTER TABLE `inmueble` ADD UNIQUE(`cod_inm`);
+
+ALTER TABLE `inmueble` ADD `estatus` INT NOT NULL DEFAULT '1' AFTER `abogado_redactor`;
+
+ALTER TABLE `inmueble` CHANGE `fecha` `fecha` DATE NULL;
 
 -- --------------------------------------------------------
 
@@ -283,6 +288,8 @@ INSERT INTO `tipo_documento` (`id`, `nombre`, `codigo`) VALUES
 (10, 'Liquidación y Partición de Bienes', 'LB'),
 (6, 'Notas Aclaratorias', 'NA'),
 (17, 'Otros', 'OT'),
+(18, 'Comodato', 'CO'),
+(18, 'Ocupación', 'OC'),
 (4, 'Permutas', 'PE'),
 (12, 'Petición Para Construcción', 'PC'),
 (16, 'Retracto Legal', 'RL'),

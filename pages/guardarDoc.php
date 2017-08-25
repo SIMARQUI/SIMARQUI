@@ -12,9 +12,10 @@ $tipo 			= $_REQUEST['tipo'];
 $fecha 			= $_REQUEST['fecha'];
 $datos_registro = $_REQUEST['datos_registro'];
 $abogado_redactor 	= $_REQUEST['abogado_redactor'];
+$descripcion 	= $_REQUEST['descripcion'];
 
-$consulta = "insert into documento (cod_doc, tipo, fecha, datos_registro, abogado_redactor)
-			values ('$cod_doc', '$tipo', '$fecha', '$datos_registro', '$abogado_redactor')";
+$consulta = "insert into documento (cod_doc, tipo, fecha, datos_registro, abogado_redactor, descripcion)
+			values ('$cod_doc', '$tipo', '$fecha', '$datos_registro', '$abogado_redactor', '$descripcion')";
 
 //ADD
 

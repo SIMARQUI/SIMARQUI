@@ -8,8 +8,7 @@
 	require_once('../librerias/utiles.php');
 
 	$conexion = conectar();
-	$consulta_ejecutar = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor from documento order by fecha_add_doc DESC";
-
+	$consulta_ejecutar = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor, descripcion from documento order by fecha_add_doc DESC";
 
 	$registros = mysqli_query($conexion, $consulta_ejecutar) or die('Problemas con la consulta');
 	$num_total_registros = mysqli_num_rows($registros);
@@ -70,6 +69,7 @@
 									<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo']."</p>
 									<p><span style='font-weight:bold'>Datos de registro:</span> ".$fila['datos_registro']."</p>
 									<p><span style='font-weight:bold'>Abogado redactor:</span> ".$fila['abogado_redactor']."</p>
+									<p><span style='font-weight:bold'>Descripción:</span> ".$fila['descripcion']."</p>
 								</div>
 								<a class='ver_doc' style='background-color:#337ab7; color: white; padding:3px; border-radius:1px;'  target='_blank' data-doc='".$fila['id_doc']."' href='../pdf/".$fila['id_doc'].".pdf'>Ver PDF</a>
 								<!--<button id='' data-doc='".$fila['id_doc']."' type='button' name='btnMas' class='btn btn-primary'>Ver PDF</button>-->

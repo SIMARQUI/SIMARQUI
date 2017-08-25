@@ -16,6 +16,7 @@ $descripcion = $_REQUEST['descripcion'];
 $fecha 			= $_REQUEST['fecha'];
 $datos_registro = $_REQUEST['datos_registro_doc'];
 $abogado_redactor = $_REQUEST['abogado_redactor_doc'];
+$estatus = $_REQUEST['estatus'];
 
 if ($fecha) {
     $fecha = date_create_from_format("d-m-Y", $fecha);
@@ -24,6 +25,6 @@ if ($fecha) {
     }
 }
 
-$query = "update inmueble set cod_inm = '$cod_inm', direccion = '$direccion', modo_adq = '$modo_adq', metraje = '$metraje', tipo_inm = '$tipo_inm', linderos = '$linderos', descripcion = '$descripcion', archiprestazgo = '$archiprestazgo', parroquia = '$parroquia', fecha = '$fecha', datos_registro = '$datos_registro', abogado_redactor = '$abogado_redactor' where id_inm = $id_inm";
+$query = "update inmueble set cod_inm = '$cod_inm', direccion = '$direccion', modo_adq = '$modo_adq', metraje = '$metraje', tipo_inm = '$tipo_inm', linderos = '$linderos', descripcion = '$descripcion', archiprestazgo = '$archiprestazgo', parroquia = '$parroquia', fecha = '$fecha', datos_registro = '$datos_registro', abogado_redactor = '$abogado_redactor', estatus = '$estatus' where id_inm = $id_inm";
 
 mysqli_query($conexion, $query);
