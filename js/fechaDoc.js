@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 	//Array para dar formato en español
 	$.datepicker.regional['es'] =
 	{
@@ -20,27 +20,27 @@ $(function(){
 
 	$.datepicker.setDefaults($.datepicker.regional['es']);
 
-	$( "#desdePicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-	  yearRange: "1900:-c+00",
-	  maxDate: "+0m +0d",
-	  altField: "#desde",
-	  altFormat: "yy-mm-dd"
-    }).keyup(function(e) {
-		if(e.keyCode == 8 || e.keyCode == 46) {
-			$.datepicker._clearDate(this);
-		}
+	$("#desdePicker").datepicker({
+	    changeMonth: true,
+	    changeYear: true,
+	    yearRange: "1400:-c+00",
+	    maxDate: "+0m +0d",
+	    altField: "#desde",
+	    altFormat: "yy-mm-dd"
+	}).keyup(function(e) {
+	    if (e.keyCode == 8 || e.keyCode == 46) {
+	        $.datepicker._clearDate(this);
+	    }
 	});
 
 	$( "#hastaPicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-	  yearRange: "1900:-c+00",
-	  maxDate: "+0m +0d",
-	  altField: "#hasta",
-	  altFormat: "yy-mm-dd"
-    }).keyup(function(e) {
+      	changeMonth: true,
+      	changeYear: true,
+	  	yearRange: "1400:-c+00",
+	  	maxDate: "+0m +0d",
+	  	altField: "#hasta",
+	  	altFormat: "yy-mm-dd"
+	}).keyup(function(e) {
 		if(e.keyCode == 8 || e.keyCode == 46) {
 			$.datepicker._clearDate(this);
 		}
@@ -49,7 +49,7 @@ $(function(){
 	$("#fechaPicker").datepicker({
   		changeMonth: true,
       	changeYear: true,
-	  	yearRange: "1900:-c+00",
+	  	yearRange: "1400:-c+00",
 	  	maxDate: "+0m +0d",
 	  	altField: "#fecha",
 	  	altFormat: "yy-mm-dd"
@@ -58,16 +58,16 @@ $(function(){
 	$("#fecha_edit").datepicker({
       	changeMonth: true,
       	changeYear: true,
-	  	yearRange: "1900:-c+00",
+	  	yearRange: "1400:-c+00",
 	  	maxDate: "+0m +0d",
 	  	altField: "#fecha_edit_hidden",
 	  	altFormat: "yy-mm-dd"
     });
 
 	$("#fechaDoc").datepicker({
-  		changeMonth: true,
+		changeMonth: true,
       	changeYear: true,
-	  	yearRange: "1900:-c+00",
+	  	yearRange: "1400:-c+00",
 	  	maxDate: "+0m +0d",
 	  	altField: "#fecha_doc",
 	  	altFormat: "yy-mm-dd"
@@ -76,7 +76,7 @@ $(function(){
 	$("#fechaDocEdit").datepicker({
   		changeMonth: true,
       	changeYear: true,
-	  	yearRange: "1900:-c+00",
+	  	yearRange: "1400:-c+00",
 	  	maxDate: "+0m +0d",
 	  	altField: "#fecha_doc_edit",
 	  	altFormat: "yy-mm-dd"

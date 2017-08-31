@@ -24,3 +24,32 @@
 			echo "<option value='".$fila['id']."'>" . ($show_code ? $fila['codigo'] . ' - ' : '') . $fila['nombre'] . "</option>\n";
 		}
 	}
+
+	function sanitize_file_name($str, $relative_path = FALSE) {
+		$bad = array(
+	        '../', '<!--', '-->', '<', '>',
+	        "'", '"', '&', '$', '#',
+	        '{', '}', '[', ']', '=',
+	        ';', '?', '%20', '%22',
+	        '%3c',      // <
+	        '%253c',    // <
+	        '%3e',      // >
+	        '%0e',      // >
+	        '%28',      // (
+	        '%29',      // )
+	        '%2528',    // (
+	        '%26',      // &
+	        '%24',      // $
+	        '%3f',      // ?
+	        '%3b',      // ;
+	        '%3d',       // =
+	    );
+
+	    if (! $relative_path)
+	    {
+	        $bad[] = './';
+	        $bad[] = '/';
+	    }
+
+	    return stripslashes(str_replace($bad, '', $str));
+	}

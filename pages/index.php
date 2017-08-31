@@ -215,7 +215,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<!-- ADD -->
 			<div class="form-group">
 				<label>Documento</label>
-				<input type="file" id="archivo_doc" name="archivo_doc">
+				<input type="file" id="archivo_doc" name="archivo_doc[]" multiple>
 			</div>
 		</form>
 	</div>

@@ -5,6 +5,10 @@
 /vendor/*
 /config/app.php
 
+pages/uploads/documentos/*
+!pages/uploads/documentos/.empty
+pages/uploads/inmuebles/*
+!pages/uploads/inmuebles/.empty
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*

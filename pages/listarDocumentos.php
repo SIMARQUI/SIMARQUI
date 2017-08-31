@@ -59,6 +59,13 @@
 			$tipo = mysqli_fetch_assoc($tipos);
 			$fila['tipo'] = $tipo['nombre'];
 
+			//	Archivos
+			$archivos = [];
+			$folder = "uploads/documentos/" . $fila['id_doc'];
+			if (is_dir($folder)) {
+				$archivos  = array_diff(scandir($folder), array('.', '..'));
+			}
+
 			echo		"<!--<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-doc='".$fila['id_doc']."' class='ver_inms' href='#'><img src='../inm-list.jpg' width='48px' height='51px' alt='Ver Inmuebles'></a></div>-->
 						</div>
 						<!-- /.panel-heading -->
@@ -70,9 +77,20 @@
 									<p><span style='font-weight:bold'>Datos de registro:</span> ".$fila['datos_registro']."</p>
 									<p><span style='font-weight:bold'>Abogado redactor:</span> ".$fila['abogado_redactor']."</p>
 									<p><span style='font-weight:bold'>Descripción:</span> ".$fila['descripcion']."</p>
-								</div>
-								<a class='ver_doc' style='background-color:#337ab7; color: white; padding:3px; border-radius:1px;'  target='_blank' data-doc='".$fila['id_doc']."' href='../pdf/".$fila['id_doc'].".pdf'>Ver PDF</a>
-								<!--<button id='' data-doc='".$fila['id_doc']."' type='button' name='btnMas' class='btn btn-primary'>Ver PDF</button>-->
+								</div>";
+			foreach ($archivos as $archivo) {
+				$short_name = $archivo;
+				$extension = pathinfo($archivo, PATHINFO_EXTENSION);
+
+				if (strlen($short_name) > 20) {
+					$short_name = substr($archivo, 0, 17) . '...';
+				}
+				echo " <a class='btn btn-default btn-sm' target='_blank' href='" . $folder . '/' . urlencode($archivo) ."' title='Descargar " . $archivo . "'>
+					 		" . $short_name . "   <span class='glyphicon glyphicon-save' aria-hidden='true'></span>
+						</a>";
+			}
+
+			echo "
 							</div>
 						</div>
 						<!-- /.panel-body -->
