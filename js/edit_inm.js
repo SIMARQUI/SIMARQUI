@@ -10,7 +10,7 @@
 	  metraje_edit	= $("#metraje_edit"),
 	  tipo_inm_edit	= $("#tipo_inm_edit"),
 	  linderos_edit	= $("#linderos_edit"),
-	  descripcion_edit	= $("#descripcion_edit"),
+	  descripcion_edit	= $("#descripcion_inm_edit"),
       fechaPickerDocEdit = $("#fechaPickerDocEdit"),
       datos_registro_doc_edit = $("#datos_registro_doc_edit"),
       abogado_redactor_doc_edit = $("#abogado_redactor_doc_edit"),
@@ -86,22 +86,37 @@
         valid = valid && checkLength(metraje_edit, "Metraje", 1, 20);
         valid = valid && checkLength(tipo_inm_edit, "Tipo de Inmueble", 1, 50);
         valid = valid && checkLength(linderos_edit, "Linderos", 1, 200);
-        valid = valid && checkLength(descripcion_edit, "Descripcion", 1, 200);
 
         if (valid) {
+            //información del formulario
+    		var formData = new FormData(document.getElementById("form_inm_edit"));
+
             //hacemos la petición ajax
-            var enlace = "actualizarInm.php?" + $("#form_inm_edit").serialize();
             $.ajax({
-                url: enlace,
-                success: function(data) {
+                url: 'actualizarInm.php',
+                type: 'POST',
+                // Form data
+                //datos del formulario
+                data: formData,
+                //necesario para subir archivos via ajax
+                cache: false,
+                contentType: false,
+                processData: false,
+                //mientras enviamos el archivo
+                /*beforeSend: function(){
+                    //message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+                    //showMessage(message)
+                },*/
+                //una vez finalizado correctamente
+                success: function(data){
                     $("#mostrarInmuebles").empty();
                     $("#mostrarInmuebles").load("procesarInm.php?edit_inm=1");
                 },
                 //si ha ocurrido un error
-                error: function() {
+                error: function(){
                     //message = $("<span class='error'>Ha ocurrido un error.</span>");
                     //showMessage(message);
-                    alert('Ocurrio un error');
+    				alert('ocurrio un error');
                 }
             });
             //FIN ADD
@@ -148,12 +163,34 @@
             $("#metraje_edit").val(data.metraje);
             $("#tipo_inm_edit").val(data.tipo_inm);
             $("#linderos_edit").val(data.linderos);
-            $("#descripcion_edit").val(data.descripcion);
+            $("#descripcion_inm_edit").val(data.descripcion);
             $("#fechaDocEdit").val(data.fecha);
             $("#fecha_doc_edit").val(data.fecha);
             $("#datos_registro_doc_edit").val(data.datos_registro);
             $("#abogado_redactor_doc_edit").val(data.abogado_redactor);
             $("#estatus_edit").val(data.estatus);
+
+            $("#list_archivo_inmueble_edit").html('');
+
+            data.archivos.forEach(function(archivo) {
+                var item = $("<div>").addClass('btn-group')
+                            .attr('id', 'btn-delete-inmueble-' + data.id_inm)
+                            .append(
+                                $('<a>').addClass('btn btn-default btn-sm')
+                                .attr('target', '_blank')
+                                .attr('href', archivo.url)
+                                .attr('title', 'Descargar ' + archivo.name)
+                                .append($('<span>').html(archivo.short_name))
+                                .append($('<span>').addClass('glyphicon glyphicon-save')))
+                            .append(
+                                $('<a>').addClass('btn btn-danger btn-sm')
+                                .attr('href', '#')
+                                .attr('title', 'Eliminar ' + archivo.name)
+                                .attr('data-inm', data.id_inm)
+                                .attr('data-name', archivo.name)
+                                .append($('<span>').addClass('glyphicon glyphicon-trash')));
+                $('#list_archivo_inmueble_edit').append(item);
+            });
         });
 
         dialogEditInm.dialog("open");

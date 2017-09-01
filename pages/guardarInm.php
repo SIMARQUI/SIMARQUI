@@ -5,6 +5,8 @@ if(!isset($_SESSION['usuario']))
 	header('location: login.php');
 
 include('../librerias/conexion.php');
+include('../librerias/utiles.php');
+
 $conexion = conectar();
 
 $cod_inm		= $_REQUEST['cod_inm'];
@@ -26,4 +28,16 @@ $consulta = "insert into inmueble (cod_inm, direccion, modo_adq, metraje, tipo_i
 
 mysqli_query($conexion, $consulta) or die("Error en la insercion de inmueble");
 
-$id_inm = mysqli_insert_id($conexion);
+$id = mysqli_insert_id($conexion);
+$folder = "uploads/inmuebles/" . $id;
+
+if (!is_dir($folder)) {
+	mkdir($folder);
+}
+
+foreach ($_FILES['archivo_inmueble']['error'] as $key => $error) {
+	if ($error == UPLOAD_ERR_OK) {
+		$name = sanitize_file_name(basename($_FILES['archivo_inmueble']['name'][$key]));
+		move_uploaded_file($_FILES['archivo_inmueble']['tmp_name'][$key], $folder . "/" . $name);
+	}
+}

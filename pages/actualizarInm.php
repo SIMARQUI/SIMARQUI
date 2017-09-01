@@ -1,5 +1,11 @@
 <?php
-require_once('../librerias/conexion.php');
+session_start();
+
+if(!isset($_SESSION['usuario']))
+	header('location: login.php');
+
+include('../librerias/conexion.php');
+include('../librerias/utiles.php');
 
 $conexion = conectar();
 
@@ -28,3 +34,17 @@ if ($fecha) {
 $query = "update inmueble set cod_inm = '$cod_inm', direccion = '$direccion', modo_adq = '$modo_adq', metraje = '$metraje', tipo_inm = '$tipo_inm', linderos = '$linderos', descripcion = '$descripcion', archiprestazgo = '$archiprestazgo', parroquia = '$parroquia', fecha = '$fecha', datos_registro = '$datos_registro', abogado_redactor = '$abogado_redactor', estatus = '$estatus' where id_inm = $id_inm";
 
 mysqli_query($conexion, $query);
+
+
+$folder = "uploads/inmuebles/" . $id_inm;
+
+if (!is_dir($folder)) {
+	mkdir($folder);
+}
+
+foreach ($_FILES['archivo_inmueble']['error'] as $key => $error) {
+	if ($error == UPLOAD_ERR_OK) {
+		$name = sanitize_file_name(basename($_FILES['archivo_inmueble']['name'][$key]));
+		move_uploaded_file($_FILES['archivo_inmueble']['tmp_name'][$key], $folder . "/" . $name);
+	}
+}

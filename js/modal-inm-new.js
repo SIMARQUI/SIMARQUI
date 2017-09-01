@@ -122,9 +122,34 @@
         valid = valid && checkLength(fechaPicker, "Fecha", 1, 50);
 
         if (valid) {
-            $.get("guardarInm.php?" + $("#form_inm_new").serialize(), function() {
-                $("#mostrarInmuebles").empty();
-                $("#mostrarInmuebles").load("procesarInm.php");
+            var formData = new FormData(document.getElementById("form_inm_new"));
+            //hacemos la petición ajax
+            $.ajax({
+                url: 'guardarInm.php',
+                type: 'POST',
+                // Form data
+                //datos del formulario
+                data: formData,
+                //necesario para subir archivos via ajax
+                cache: false,
+                contentType: false,
+                processData: false,
+                //mientras enviamos el archivo
+                /*beforeSend: function(){
+                    //message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+                    //showMessage(message)
+                },*/
+                //una vez finalizado correctamente
+                success: function(data){
+                    $("#mostrarInmuebles").empty();
+                    $("#mostrarInmuebles").load("procesarInm.php");
+                },
+                //si ha ocurrido un error
+                error: function(){
+                    //message = $("<span class='error'>Ha ocurrido un error.</span>");
+                    //showMessage(message);
+    				alert('ocurrio un error');
+                }
             });
 
             dialogNewInm.dialog("close");

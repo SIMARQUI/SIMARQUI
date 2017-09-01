@@ -310,7 +310,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 	<!-- Modales Para inmueble -->
 	<div id="dialog-new-inmueble" title="Nuevo Inmueble">
 		<p class="validateTips">Todos los campos son requeridos.</p>
-		<form role="form" id="form_inm_new">
+		<form role="form" id="form_inm_new" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>Codigo</label>
 				<p class="form-control-static" id="cod_inm_show">-</p>
@@ -386,12 +386,18 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<input id="abogado_redactor_doc" name="abogado_redactor_doc" class="form-control" placeholder="Abogado Redactor">
 			</div>
 
+			<!-- ADD -->
+			<div class="form-group">
+				<label>Documento</label>
+				<input type="file" id="archivo_inmueble" name="archivo_inmueble[]" multiple>
+			</div>
+
 		</form>
 	</div>
 
 	<div id="dialog-edit-inmueble" title="Editar Inmueble">
 		<p class="validateTips">Todos los campos son requeridos.</p>
-		<form role="form" id="form_inm_edit">
+		<form role="form" id="form_inm_edit" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>Codigo</label>
 				<input id="id_inm" name="id_inm" type="hidden">
@@ -447,7 +453,7 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			</div>
 			<div class="form-group">
 				<label>Descripcion</label>
-				<textarea id="descripcion_edit" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
+				<textarea id="descripcion_inm_edit" name="descripcion" class="form-control" placeholder="Descripcion" rows="4"></textarea>
 			</div>
 
 			<hr/>
@@ -467,6 +473,15 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<div class="form-group">
 				<label>Abogado Redactor</label>
 				<input id="abogado_redactor_doc_edit" name="abogado_redactor_doc" class="form-control" placeholder="Abogado Redactor">
+			</div>
+
+			<!-- ADD -->
+			<div class="form-group">
+				<label>Documento</label>
+				<input type="file" id="archivo_inmueble_edit" name="archivo_inmueble[]" multiple>
+			</div>
+
+			<div class="btn-toolbar" id="list_archivo_inmueble_edit">
 			</div>
 
 		</form>
@@ -505,7 +520,10 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 		</div>-->
 	</div>
 	<div id="dialog-confirm-delete-inm" title="Eliminar Inmueble">
-		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>esta seguro de borrar este inmueble?.</p>
+		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Esta seguro de borrar este inmueble?.</p>
+	</div>
+	<div id="dialog-confirm-delete-inm-adjunto" title="Eliminar Inmueble">
+		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Esta seguro de borrar este documento adjunto?.</p>
 	</div>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>

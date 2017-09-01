@@ -12,4 +12,26 @@ if ($fecha) {
     $fila['fecha'] = $fecha->format('d-m-Y');
 }
 
+
+// Archivos
+$archivos = [];
+$folder = "uploads/inmuebles/" . $id_inm;
+
+if (is_dir($folder)) {
+    $files  = array_diff(scandir($folder), array('.', '..'));
+
+    foreach ($files as $file) {
+        $short_name = $file;
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        $url = $folder . '/' . urlencode($file);
+
+        if (strlen($short_name) > 20) {
+            $short_name = substr($file, 0, 17) . '...';
+        }
+        $archivos[] = ['name' => $file, 'short_name' => $short_name, 'url' => $url];
+    }
+}
+
+$fila['archivos'] = $archivos;
+
 echo json_encode($fila);

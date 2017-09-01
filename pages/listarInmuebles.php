@@ -60,6 +60,13 @@
 					"<!--<div style='float:right; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='new-doc-to-inm' href='#'><img src='../document_new.png' width='48px' height='51px' alt='Crear nuevo Documento'></a></div>-->";
 			}
 
+			//	Archivos
+			$archivos = [];
+			$folder = "uploads/inmuebles/" . $fila['id_inm'];
+			if (is_dir($folder)) {
+				$archivos  = array_diff(scandir($folder), array('.', '..'));
+			}
+
 			echo		"<!--<div style='float:right; margin-right:15px; border:1px solid blue;'><a data-inm='".$fila['id_inm']."' class='ver_docs' href='#'><img src='../documents2.png' width='48px' height='51px' alt='Ver Documentos'></a></div>-->
 						</div>
 						<!-- /.panel-heading -->
@@ -81,7 +88,21 @@
 									<h4>Informacion del documento</h4>
 									<p><span style='font-weight:bold'>Fecha:</span> ".$fila['fecha']."</p>
 									<p><span style='font-weight:bold'>Datos de Registro:</span> ".$fila['datos_registro']."</p>
-									<p><span style='font-weight:bold'>Abogado Redactor:</span> ".$fila['abogado_redactor']."</p>
+									<p><span style='font-weight:bold'>Abogado Redactor:</span> ".$fila['abogado_redactor']."</p>";
+
+			foreach ($archivos as $archivo) {
+				$short_name = $archivo;
+				$extension = pathinfo($archivo, PATHINFO_EXTENSION);
+
+				if (strlen($short_name) > 20) {
+					$short_name = substr($archivo, 0, 17) . '...';
+				}
+				echo " <a class='btn btn-default btn-sm' target='_blank' href='" . $folder . '/' . urlencode($archivo) ."' title='Descargar " . $archivo . "'>
+					 		" . $short_name . "   <span class='glyphicon glyphicon-save' aria-hidden='true'></span>
+						</a>";
+			}
+
+			echo "
 								</div>
 							</div>
 						</div>
