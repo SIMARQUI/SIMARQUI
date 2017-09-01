@@ -53,3 +53,12 @@
 
 	    return stripslashes(str_replace($bad, '', $str));
 	}
+
+	function delete_folder($folder) {
+		$files = array_diff(scandir($folder), array('.','..'));
+		foreach ($files as $file) {
+      		(is_dir("$folder/$file")) ? delete_folder("$folder/$file") : unlink("$folder/$file");
+	    }
+
+	    return rmdir($folder);
+	}

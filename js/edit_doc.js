@@ -69,7 +69,7 @@
       valid = valid && checkLength( datos_registro_edit, "Datos de Registro", 1, 300);
       valid = valid && checkLength( abogado_redactor_edit, "Abogado Redactor", 1, 300);
 
-      if ( valid ) {
+      if (valid) {
 
 		//ADD
 		//información del formulario
@@ -131,32 +131,53 @@
       updateDoc();
     });
 
-    $( "#mostrarDocumentos" ).on( "click", ".edit_doc", function(event) {
-	  event.preventDefault();
-	  tips.text('');
-	  $.getJSON("enviarDatosDeDoc.php?id_doc="+$(this).data('doc'), function(data) {
-          $("#id_doc").val(data.id_doc);
-		  $("#cod_doc_edit_show").text(data.cod_doc);
-          $("#cod_edit_doc").val(data.cod_doc);
-		  $("#tipo_edit").val(data.tipo);
+    $("#mostrarDocumentos").on("click", ".edit_doc", function(event) {
+        event.preventDefault();
+        tips.text('');
+        $.getJSON("enviarDatosDeDoc.php?id_doc=" + $(this).data('doc'), function(data) {
+            $("#id_doc").val(data.id_doc);
+            $("#cod_doc_edit_show").text(data.cod_doc);
+            $("#cod_edit_doc").val(data.cod_doc);
+            $("#tipo_edit").val(data.tipo);
 
-		  //console.log('fecha recibida: '+data.fecha);
-		  var myMoment = moment(data.fecha, "YYYY-MM-DD");
-		  //console.log('fecha moment: '+myMoment);
-		  //console.log('mes moment: '+myMoment.year());
+            //console.log('fecha recibida: '+data.fecha);
+            var myMoment = moment(data.fecha, "YYYY-MM-DD");
+            //console.log('fecha moment: '+myMoment);
+            //console.log('mes moment: '+myMoment.year());
 
-		  //objDate = new Date(data.fecha+ ' 00:00:00 GMT');
-		  //$("#fecha_edit").val((objDate.getDate()+1)+"/"+(objDate.getMonth()+1)+"/"+objDate.getFullYear());
-		  $("#fecha_edit").val(myMoment.date()+"/"+(myMoment.month()+1)+"/"+myMoment.year());
-		  $("#fecha_edit_hidden").val(data.fecha);
-		  $("#datos_registro_edit").val(data.datos_registro);
-		  $("#abogado_redactor_edit").val(data.abogado_redactor);
-          $("#descripcion_edit").val(data.descripcion);
-	  });
+            //objDate = new Date(data.fecha+ ' 00:00:00 GMT');
+            //$("#fecha_edit").val((objDate.getDate()+1)+"/"+(objDate.getMonth()+1)+"/"+objDate.getFullYear());
+            $("#fecha_edit").val(myMoment.date() + "/" + (myMoment.month() + 1) + "/" + myMoment.year());
+            $("#fecha_edit_hidden").val(data.fecha);
+            $("#datos_registro_edit").val(data.datos_registro);
+            $("#abogado_redactor_edit").val(data.abogado_redactor);
+            $("#descripcion_edit").val(data.descripcion);
 
-      dialogEditDoc.dialog( "open" );
+            $("#list_archivo_doc_edit").html('');
+
+            data.archivos.forEach(function(archivo) {
+                var item = $("<div>").addClass('btn-group')
+                            .attr('id', 'btn-delete-' + data.id_doc)
+                            .append(
+                                $('<a>').addClass('btn btn-default btn-sm')
+                                .attr('target', '_blank')
+                                .attr('href', archivo.url)
+                                .attr('title', 'Descargar ' + archivo.name)
+                                .append($('<span>').html(archivo.short_name))
+                                .append($('<span>').addClass('glyphicon glyphicon-save')))
+                            .append(
+                                $('<a>').addClass('btn btn-danger btn-sm')
+                                .attr('href', '#')
+                                .attr('title', 'Eliminar ' + archivo.name)
+                                .attr('data-doc', data.id_doc)
+                                .attr('data-name', archivo.name)
+                                .append($('<span>').addClass('glyphicon glyphicon-trash')));
+                $('#list_archivo_doc_edit').append(item);
+            });
+        });
+
+        dialogEditDoc.dialog("open");
     });
-
 
     $("#tipo_edit").on("change", function () {
         var tipo = $("#tipo_edit").val();

@@ -259,10 +259,13 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<textarea id="descripcion_edit" name="descripcion" class="form-control" placeholder="Descripción" rows="2"></textarea>
 			</div>
 			<!-- ADD -->
-			<!--<div class="form-group">
+			<div class="form-group">
 				<label>Documento</label>
-				<input type="file" id="archivo_doc_edit" name="archivo_doc">
-			</div>-->
+				<input type="file" id="archivo_doc_edit" name="archivo_doc[]" multiple>
+			</div>
+
+			<div class="btn-toolbar" id="list_archivo_doc_edit">
+			</div>
 		</form>
 	</div>
 	<div id="show-inms-from-doc-modal" title="Inmuebles de documento">
@@ -299,7 +302,10 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 		</div>-->
 	</div>
 	<div id="dialog-confirm-delete-doc" title="Eliminar Documento">
-		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>esta seguro de borrar este documento?.</p>
+		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Esta seguro de borrar este documento?.</p>
+	</div>
+	<div id="dialog-confirm-delete-documento-adjuntado" title="Eliminar Documento adjunto">
+		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Esta seguro de borrar este documento adjunto?.</p>
 	</div>
 	<!-- Modales Para inmueble -->
 	<div id="dialog-new-inmueble" title="Nuevo Inmueble">

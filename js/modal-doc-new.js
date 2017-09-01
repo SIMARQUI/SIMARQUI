@@ -103,7 +103,7 @@
       valid = valid && checkLength( datos_registro, "Datos de Registro", 1, 100 );
       valid = valid && checkLength( abogado_redactor, "Abogado Redactor", 1, 100 );
 
-      if ( valid ) {
+      if (valid) {
 
 		//ADD
 		//información del formulario
