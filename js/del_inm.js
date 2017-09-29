@@ -22,7 +22,9 @@ $(function() {
             "Aceptar": function() {
                 $.get("del_inm_adjuntado.php?id_inm=" + id_inm + "&name=" + name, function(data) {
 					$("#mostrarInmuebles").empty();
-                    $("#mostrarInmuebles").load("procesarInm.php?edit_inm=1");
+                    $("#mostrarInmuebles").load("procesarInm.php?edit_inm=1", function() {
+            	  		initMap();
+            		});
                     $("#btn-delete-inmueble-" + id_inm).remove();
                 });
                 $(this).dialog("close");
@@ -51,7 +53,9 @@ $(function() {
             "Aceptar": function() {
                 $.get("del_inm.php?id_inm=" + id_inm, function(data) {
                     $("#mostrarInmuebles").empty();
-                    $("#mostrarInmuebles").load("procesarInm.php?edit_inm=1");
+                    $("#mostrarInmuebles").load("procesarInm.php?edit_inm=1", function() {
+            	  		initMap();
+            		});
                 });
                 $(this).dialog("close");
             },

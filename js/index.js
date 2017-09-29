@@ -51,6 +51,7 @@ $(function(){
 		if(propietarioValido()) {
 			$.get("procesarInm.php?"+$("#form2").serialize(), function(data) {
 				$("#mostrarInmuebles").empty().html(data);
+				initMap();
 			});
 		}
 	});
@@ -66,6 +67,7 @@ $(function(){
 	$("#ver_todos_inm").click(function(){
 		$.get("procesarInm.php", function(data){
 			$("#mostrarInmuebles").empty().html(data);
+			initMap();
 		});
 	});
 	//$("#busquedaDocumento").hide();

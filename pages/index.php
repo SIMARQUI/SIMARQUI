@@ -12,7 +12,7 @@ include('../librerias/conexion.php');
 
 $_SESSION['ultima_consulta'] = "select id_doc, cod_doc, tipo, datos_registro, abogado_redactor, descripcion from documento order by fecha_add_doc DESC";
 $_SESSION['ultima_pagina'] = 1;
-$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, estatus, ".
+$_SESSION['ultima_consulta_inmueble'] = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, estatus, map_position, ".
 										"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
 										"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro, ".
 										"(select nombre from tipo_documento as tipo where tipo.id = id_adq) as modo_adq ".
@@ -337,6 +337,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 				<textarea id="direccion" name="direccion" placeholder="Direccion" class="form-control" rows="4"></textarea>
 			</div>
 			<div class="form-group">
+				<label>Ubicación Google Maps</label>
+				<input type="hidden" id="maps_create_hidden" name="map_position">
+				<div class="extended_map" id="maps_create_map"></div>
+			</div>
+			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
 				<select id="modo_adq" name="modo_adq" class="form-control" >
 					<option value="ningun" size="10">Seleccionar...</option>
@@ -424,6 +429,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 			<div class="form-group">
 				<label>Direccion</label>
 				<textarea id="direccion_edit" name="direccion" placeholder="Direccion" class="form-control" rows="4"></textarea>
+			</div>
+			<div class="form-group">
+				<label>Ubicación Google Maps</label>
+				<input type="hidden" id="maps_editar_hidden" name="map_position">
+				<div class="extended_map" id="maps_editar_map"></div>
 			</div>
 			<div class="form-group">
 				<p><label>Modo de Adquisicion</label></p>
@@ -600,6 +610,11 @@ $_SESSION['ultima_pagina_inmueble'] = 1;
 
 	<!-- add-inm-to-doc-modal.js -->
 	<script src="../js/add-doc-to-inm-modal.js"></script>
+
+	<!-- maps.js -->
+	<script src="../js/maps.js"></script>
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=drawing&key=AIzaSyCdQ0G7qgbWzh8o9fcdtpotCSZYnhWeoZI&callback=initMap"></script>
 </body>
 
 </html>

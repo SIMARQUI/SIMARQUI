@@ -51,7 +51,7 @@
 	        $bad[] = '/';
 	    }
 
-	    return stripslashes(str_replace($bad, '', $str));
+	    return str_replace(" ", "_", stripslashes(str_replace($bad, '', $str)));
 	}
 
 	function delete_folder($folder) {

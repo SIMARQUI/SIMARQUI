@@ -142,7 +142,9 @@
                 //una vez finalizado correctamente
                 success: function(data){
                     $("#mostrarInmuebles").empty();
-                    $("#mostrarInmuebles").load("procesarInm.php");
+                    $("#mostrarInmuebles").load("procesarInm.php", function() {
+            	  		initMap();
+            		});
                 },
                 //si ha ocurrido un error
                 error: function(){

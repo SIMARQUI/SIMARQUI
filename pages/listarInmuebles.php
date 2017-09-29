@@ -8,7 +8,7 @@
 	require_once('../librerias/utiles.php');
 
 	$conexion = conectar();
-	$consulta_ejecutar = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, estatus, ".
+	$consulta_ejecutar = "select id_inm, cod_inm, descripcion, modo_adq as id_adq, direccion, metraje, tipo_inm, linderos, fecha, datos_registro, abogado_redactor, estatus, map_position, ".
 						 	"(select archi.nom_arch from archiprestazgo as archi where archi.id_arch = archiprestazgo) as nom_arch, ".
 							"(select parr.nom_parro from parroquia as parr where parr.id_parro = parroquia) as nom_parro, ".
 							"(select nombre from tipo_documento as tipo where tipo.id = id_adq) as modo_adq ".
@@ -73,22 +73,30 @@
 						<div class='panel-body'>
 							<!-- Tab panes -->
 							<div class='tab-content'>
-								<div class='tab-pane fade in active' id='home-pills'>
-									<p><span style='font-weight:bold'>Archiprestazgo:</span> " . $fila['nom_arch'] . "</p>
-									<p><span style='font-weight:bold'>Parroquia:</span> " . $fila['nom_parro'] . "</p>
-									<p><span style='font-weight:bold'>Direccion:</span> ".$fila['direccion']."</p>
-									<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo_inm']."</p>
-									<p><span style='font-weight:bold'>Modo de adquisicion:</span> ".$fila['modo_adq']."</p>
-									<p><span style='font-weight:bold'>Metraje:</span> ".$fila['metraje']."</p>
-									<p><span style='font-weight:bold'>Tipo de inmueble:</span> ".$fila['tipo_inm']."</p>
-									<p><span style='font-weight:bold'>Estatus:</span> " . (($fila['estatus'] == 1) ? 'Activo' : 'Desincorporado') . "</p>
-									<p><span style='font-weight:bold'>Linderos:</span> ".$fila['linderos']."</p>
-									<p><span style='font-weight:bold'>Descripcion:</span> ".$fila['descripcion']."</p>
-									<hr/>
-									<h4>Informacion del documento</h4>
-									<p><span style='font-weight:bold'>Fecha:</span> ".$fila['fecha']."</p>
-									<p><span style='font-weight:bold'>Datos de Registro:</span> ".$fila['datos_registro']."</p>
-									<p><span style='font-weight:bold'>Abogado Redactor:</span> ".$fila['abogado_redactor']."</p>";
+								<div class='tab-pane fade in active row' id='home-pills'>
+									<div class='col-lg-7'>
+										<p><span style='font-weight:bold'>Archiprestazgo:</span> " . $fila['nom_arch'] . "</p>
+										<p><span style='font-weight:bold'>Parroquia:</span> " . $fila['nom_parro'] . "</p>
+										<p><span style='font-weight:bold'>Direccion:</span> ".$fila['direccion']."</p>
+										<p><span style='font-weight:bold'>Tipo:</span> ".$fila['tipo_inm']."</p>
+										<p><span style='font-weight:bold'>Modo de adquisicion:</span> ".$fila['modo_adq']."</p>
+										<p><span style='font-weight:bold'>Metraje:</span> ".$fila['metraje']."</p>
+										<p><span style='font-weight:bold'>Tipo de inmueble:</span> ".$fila['tipo_inm']."</p>
+										<p><span style='font-weight:bold'>Estatus:</span> " . (($fila['estatus'] == 1) ? 'Activo' : 'Desincorporado') . "</p>
+										<p><span style='font-weight:bold'>Linderos:</span> ".$fila['linderos']."</p>
+										<p><span style='font-weight:bold'>Descripcion:</span> ".$fila['descripcion']."</p>
+									</div>
+									<div class='col-lg-5 mini_map' id='mini_map".$fila['id_inm']."' data-id='".$fila['id_inm']."' data-map='".$fila['map_position']."'>
+									</div>
+									<div class='col-lg-12'>
+										<hr/>
+										<h4>Informacion del documento</h4>
+										<p><span style='font-weight:bold'>Fecha:</span> ".$fila['fecha']."</p>
+										<p><span style='font-weight:bold'>Datos de Registro:</span> ".$fila['datos_registro']."</p>
+										<p><span style='font-weight:bold'>Abogado Redactor:</span> ".$fila['abogado_redactor']."</p>
+									</div>";
+
+			echo "<div class='col-lg-12 btn-group'>";
 
 			foreach ($archivos as $archivo) {
 				$short_name = $archivo;
@@ -101,6 +109,7 @@
 					 		" . $short_name . "   <span class='glyphicon glyphicon-save' aria-hidden='true'></span>
 						</a>";
 			}
+			echo "</div>";
 
 			echo "
 								</div>
@@ -118,11 +127,11 @@
 
 		if($total_paginas > 1)
 		{
-			echo 		"<div class='row''>
-							<div class='col-lg-12'>";
+			echo 		"<div class='row text-center'>
+							<ul class='pagination pagination-sm'>";
 
 			if ($pagActual != 1)
-				echo "<a href='#' class='paginarInm' style='margin-right:10px' data-numpage='".($pagActual-1)."'>Anterior</a>";
+				echo "<li><a href='#' class='paginarInm' data-numpage='".($pagActual-1)."'>Anterior</a></li>";
 
 			if( ($pagActual >= 1) And ($pagActual <= 6) )
 			{
@@ -154,17 +163,18 @@
 				}
 			}
 
-			for($i = $lim_inf; $i <= $lim_sup; $i++)
-			{
-				if($i == $pagActual)
-					echo "<span style='margin-right:10px'>$i</span>";
-				else
-					echo "<a class='paginarInm' href='#' style='margin-right:10px' data-numpage='$i'>$i</a>";
+			for($i = $lim_inf; $i <= $lim_sup; $i++) {
+				if($i == $pagActual) {
+					echo "<li class='active'><a href='#'>$i</a></li>";
+				} else {
+					echo "<li><a class='paginarInm' href='#' data-numpage='$i'>$i</a></li>";
+				}
 			}
 
-			if($pagActual != $total_paginas)
-				echo "<a class='paginarInm' href='#' style='margin-right:10px' data-numpage='".($pagActual+1)."'>Siguiente</a>";
-			echo "</div>";
+			if($pagActual != $total_paginas) {
+				echo "<li><a class='paginarInm' href='#' data-numpage='".($pagActual+1)."'>Siguiente</a></li>";
+			}
+			echo "</ul>";
 			echo "</div>";
 		}
 	}

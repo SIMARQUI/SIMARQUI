@@ -113,6 +113,8 @@ ALTER TABLE `inmueble` ADD `estatus` INT NOT NULL DEFAULT '1' AFTER `abogado_red
 
 ALTER TABLE `inmueble` CHANGE `fecha` `fecha` DATE NULL;
 
+ALTER TABLE `inmueble` ADD `map_position` TEXT NULL AFTER `estatus`;
+
 -- --------------------------------------------------------
 
 --
